@@ -26,7 +26,7 @@ public class ApiController {
     @RequestMapping("/test")
     public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name) {
 
-        return "test compslete";
+        return "test  compslete";
     }
 
 }
