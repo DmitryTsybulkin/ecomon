@@ -1,9 +1,6 @@
 package com.itlab2017;
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicLong;
 
-import com.fasterxml.jackson.databind.util.JSONPObject;
-import com.itlab2017.Business.Device;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
