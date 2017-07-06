@@ -35,8 +35,6 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>5.2.1.Final</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/postgresql/postgresql -->
-
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
