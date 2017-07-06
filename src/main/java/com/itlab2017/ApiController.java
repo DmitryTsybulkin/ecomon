@@ -20,6 +20,7 @@ public class ApiController {
             device.id = i;
             device.name = "device " + String.valueOf(i);
             list.add(device);
+
         }
         return list;
     }
