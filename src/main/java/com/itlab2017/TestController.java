@@ -10,7 +10,7 @@ public class TestController {
     @RequestMapping("/testapi")
     public String greeting(@RequestParam(value="name", required=false, defaultValue="World") String name) {
 
-        return "test complete";
+        return "test compslete";
     }
     @RequestMapping("/getDeviceList")
     public String greeting() {
