@@ -12,4 +12,9 @@ public class TestController {
 
         return "test complete";
     }
+    @RequestMapping("/getDeviceList")
+    public String greeting() {
+
+        return "{}";
+    }
 }
