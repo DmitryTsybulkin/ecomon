@@ -13,7 +13,7 @@ public class TestController {
         return "test compslete";
     }
     @RequestMapping("/getDeviceList")
-    public String greeting() {
+    public String getDeviceList() {
 
         return "{'test':'tests'}";
     }
