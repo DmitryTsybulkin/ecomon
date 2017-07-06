@@ -15,6 +15,6 @@ public class TestController {
     @RequestMapping("/getDeviceList")
     public String greeting() {
 
-        return "{'test':'test'}";
+        return "{'test':'tests'}";
     }
 }
