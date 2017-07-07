@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title>Ecomon</title>
+
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+</head>
+<body>
+<div class="container">
+    <div th:if="${not #lists.isEmpty(devices)}">
+        <h2>Список устройств</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Ид</th>
+                <th>Именование</th>
+                <th></th>
+            </tr>
+            <tr th:each="device : ${devices}">
+                <td th:text="${device.id}"><a href="/device/${device.id}">Id</a></td>
+                <td th:text="${device.name}">Product Id</td>
+                <td><a th:href="${ '/device/' + device.id}">Подробнее...</a></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+
+</body>
+</html>
