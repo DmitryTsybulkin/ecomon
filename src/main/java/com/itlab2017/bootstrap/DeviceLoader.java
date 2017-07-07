@@ -62,7 +62,7 @@ public class DeviceLoader implements ApplicationListener<ContextRefreshedEvent> 
             while (true) try {
                 Thread.sleep(1000);
                 Record record = new Record();
-                record.setValue( String.valueOf(random.nextDouble()*5+20));
+                record.setValue( String.valueOf(random.nextDouble()*3+20));
                 record.setSensor(sensor);
                 record.setTimestamp(new Timestamp(System.currentTimeMillis()));
                 Date dt = new Date();
