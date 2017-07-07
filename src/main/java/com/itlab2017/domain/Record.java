@@ -1,11 +1,7 @@
 package com.itlab2017.domain;
 
-import com.sun.xml.internal.ws.developer.Serialization;
-
 import javax.persistence.*;
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.util.Set;
 
 /**
  * Created by Lenovo on 07.07.2017.
