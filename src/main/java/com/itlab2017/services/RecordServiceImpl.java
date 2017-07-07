@@ -2,6 +2,7 @@ package com.itlab2017.services;
 
 import com.itlab2017.domain.Record;
 import com.itlab2017.repositories.RecordRepository;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -24,7 +25,7 @@ public class RecordServiceImpl implements RecordService {
 
     @Override
     public Record getRecordById(Integer id) {
-        return recordRepository.findOne(id);
+       return recordRepository.findOne(id);
     }
 
     @Override
