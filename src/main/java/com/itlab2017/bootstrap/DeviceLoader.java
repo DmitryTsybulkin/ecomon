@@ -60,7 +60,7 @@ public class DeviceLoader implements ApplicationListener<ContextRefreshedEvent> 
         new Thread(() -> {
             Random random = new Random();
             while (true) try {
-                Thread.sleep(1000);
+                Thread.sleep(50);
                 Record record = new Record();
                 record.setValue( String.valueOf(random.nextDouble()*5+20));
                 record.setSensor(sensor);

@@ -80,7 +80,7 @@
                         });
                         setInterval(function(){
                             that.stompClient.send("/app/hello", {}, JSON.stringify({'name': [[${sensor.id}]]}));
-                        }, 1000);
+                        }, 50);
 
                     }
                     //]]>
