@@ -19,17 +19,11 @@ import java.util.Date;
 public class DeviceLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     private DeviceRepository deviceRepository;
-    private MqttServerService mqttServerService;
-
     private Logger log = Logger.getLogger(DeviceLoader.class);
 
     @Autowired
     public void setDeviceRepository(DeviceRepository deviceRepository) {
         this.deviceRepository = deviceRepository;
-    }
-    @Autowired
-    public void setMqttServerService(MqttServerService mqttServerService) {
-        this.mqttServerService = mqttServerService;
     }
 
     @Override

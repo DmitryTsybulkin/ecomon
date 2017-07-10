@@ -15,18 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class ApiController {
 
-    private MqttServerService mqttServerService;
-
-    @Autowired
-    public void setMqttServerService(MqttServerService mqttServerService) {
-        this.mqttServerService = mqttServerService;
-    }
 
     @RequestMapping("/devices")
     @PostMapping
     public int devices(@RequestParam(value="name", required=false, defaultValue="World") String name) {
-        List<Subscription> subscriptions = mqttServerService.getMqttServer().getSubscriptions();
-        return subscriptions.size();
+        return 2;
     }
 
 }

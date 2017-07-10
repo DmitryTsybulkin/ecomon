@@ -8,6 +8,8 @@ import com.itlab2017.services.SensorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
@@ -23,7 +25,8 @@ public class WebApiController {
     public void setDeviceService(SensorService sensorService) {
         this.sensorService = sensorService;
     }
-
+    @Autowired
+    private SimpMessagingTemplate simpMessagingTemplate;
 
     @MessageMapping("/hello")
     @SendTo("/topic/greetings")
@@ -40,5 +43,13 @@ public class WebApiController {
         Record record = records.get(records.size()-1);
         return new Message(record.getValue(), record.getTimestamp());
     }
+    @MessageMapping("/station")
+    @SendTo("/topic/station")
+    public String station() throws Exception {
+        return "test123";
+    }
+
+
+
 
 }
