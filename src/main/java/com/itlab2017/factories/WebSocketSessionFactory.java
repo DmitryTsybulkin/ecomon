@@ -1,6 +1,7 @@
 package com.itlab2017.factories;
 
-import org.slf4j.Logger;
+import com.itlab2017.bootstrap.DeviceLoader;
+import org.apache.log4j.Logger;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
@@ -15,7 +16,7 @@ import java.util.List;
  */
 @Component
 public class WebSocketSessionFactory {
-    private final Logger log = org.slf4j.LoggerFactory.getLogger(WebSocketSessionFactory.class);
+    private Logger log =  Logger.getLogger(DeviceLoader.class);
 
 
     private final List<WebSocketSession> webSocketSessions = new ArrayList<WebSocketSession>();
