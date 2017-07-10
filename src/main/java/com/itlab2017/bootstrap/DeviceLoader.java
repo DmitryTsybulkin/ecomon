@@ -28,7 +28,6 @@ public class DeviceLoader implements ApplicationListener<ContextRefreshedEvent> 
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-
         Device device = new Device();
         device.setName("Ардуино №1");
 
