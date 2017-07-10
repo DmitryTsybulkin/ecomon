@@ -28,6 +28,7 @@ public class WebApiController {
     @MessageMapping("/hello")
     @SendTo("/topic/greetings")
     public Message greeting(HelloMessage message) throws Exception {
+        System.out.print("test");
         Sensor sensor = sensorService.getSensorById(Integer.parseInt(message.getName()));
         ArrayList<Record > records = new ArrayList<Record>(sensor.getRecords());
         Collections.sort(records,new Comparator<Record>() {
