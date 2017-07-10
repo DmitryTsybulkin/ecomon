@@ -1,0 +1,42 @@
+#logging.level.org.h2.server: DEBUG
+# Database
+#spring.datasource.url=jdbc:postgresql://ec2-107-21-109-15.compute-1.amazonaws.com:5432/dbrs3m1j5asp0t?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
+#spring.datasource.username=lfpgcxojkznnnt
+#spring.datasource.password=a98c7e0d46e07b9bd7b7e90b4e29b5096825bc2c2539744c7e34264b3cfe50a9
+#spring.jpa.hibernate.ddl-auto=create-drop
+#hibernate.temp.use_jdbc_metadata_defaults=false
+#
+#
+#hibernate.hbm2ddl.auto=update
+
+
+
+spring-enabled: false
+mqtt-enabled: true
+spring:
+  profiles:
+    active: development
+
+---
+spring:
+    profiles: development
+    jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      datasource:
+          url: jdbc:h2:mem:AZ;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+          username: sa
+          password:
+
+---
+spring:
+    profiles: production
+    jpa:
+      database-platform: org.hibernate.dialect.H2Dialect
+      hibernate:
+        ddl-auto: create-drop
+    properties:
+      datasource:
+          url: jdbc:postgresql://ec2-107-21-109-15.compute-1.amazonaws.com:5432/dbrs3m1j5asp0t?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
+          username: lfpgcxojkznnnt
+          password: a98c7e0d46e07b9bd7b7e90b4e29b5096825bc2c2539744c7e34264b3cfe50a9

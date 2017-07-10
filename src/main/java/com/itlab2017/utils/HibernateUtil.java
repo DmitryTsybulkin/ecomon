@@ -1,4 +1,4 @@
-package com.itlab2017.Business;
+package com.itlab2017.utils;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

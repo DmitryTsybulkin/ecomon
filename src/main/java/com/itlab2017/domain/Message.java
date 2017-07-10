@@ -1,4 +1,4 @@
-package com.itlab2017;
+package com.itlab2017.domain;
 
 import java.sql.Timestamp;
 

@@ -4,18 +4,13 @@ import com.itlab2017.domain.Device;
 import com.itlab2017.domain.Record;
 import com.itlab2017.domain.Sensor;
 import com.itlab2017.repositories.DeviceRepository;
-import com.itlab2017.repositories.RecordRepository;
+import com.itlab2017.services.MqttServerService;
 import org.apache.log4j.Logger;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-import sun.util.calendar.BaseCalendar;
 
-import java.math.BigDecimal;
 import java.sql.*;
 import java.util.*;
 import java.util.Date;
@@ -23,23 +18,23 @@ import java.util.Date;
 @Component
 public class DeviceLoader implements ApplicationListener<ContextRefreshedEvent> {
 
-    private DeviceRepository DeviceRepository;
-    private RecordRepository recordRepository;
+    private DeviceRepository deviceRepository;
+    private MqttServerService mqttServerService;
 
     private Logger log = Logger.getLogger(DeviceLoader.class);
 
     @Autowired
-    public void setDeviceRepository(DeviceRepository DeviceRepository) {
-        this.DeviceRepository = DeviceRepository;
+    public void setDeviceRepository(DeviceRepository deviceRepository) {
+        this.deviceRepository = deviceRepository;
     }
     @Autowired
-    public void setRecordRepository(DeviceRepository recordRepository) {
-        this.DeviceRepository = recordRepository;
+    public void setMqttServerService(MqttServerService mqttServerService) {
+        this.mqttServerService = mqttServerService;
     }
-
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+
         Device device = new Device();
         device.setName("Ардуино №1");
 
@@ -51,7 +46,7 @@ public class DeviceLoader implements ApplicationListener<ContextRefreshedEvent> 
         sensor.setRecords(records);
         sensors.add(sensor);
         device.setSensors(sensors);
-        DeviceRepository.save(device);
+        deviceRepository.save(device);
 
 //        Session session = factory.openSession();
 //        Query<Device> query = session.createQuery("select d from Device d where d.id >= 0");
@@ -73,7 +68,7 @@ public class DeviceLoader implements ApplicationListener<ContextRefreshedEvent> 
 //                recordRepository.save(record);
                 sensor.getRecords().removeIf(record1 -> record1.getTimestamp().before(dt2));
                 sensor.getRecords().add(record);
-                DeviceRepository.save(device);
+                deviceRepository.save(device);
 //                log.info("Добавлена запись. Всего: " + sensor.getRecords().size());
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();

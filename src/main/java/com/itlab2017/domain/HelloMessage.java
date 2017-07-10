@@ -1,4 +1,4 @@
-package com.itlab2017;
+package com.itlab2017.domain;
 
 public class HelloMessage {
 

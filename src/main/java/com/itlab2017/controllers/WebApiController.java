@@ -1,5 +1,7 @@
-package com.itlab2017;
+package com.itlab2017.controllers;
 
+import com.itlab2017.domain.HelloMessage;
+import com.itlab2017.domain.Message;
 import com.itlab2017.domain.Record;
 import com.itlab2017.domain.Sensor;
 import com.itlab2017.services.SensorService;
