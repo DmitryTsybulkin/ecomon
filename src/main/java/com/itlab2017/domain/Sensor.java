@@ -1,7 +1,5 @@
 package com.itlab2017.domain;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.util.Set;
 
@@ -15,26 +13,31 @@ public class Sensor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Device.class, cascade = CascadeType.ALL)
-    @JoinColumn(name="deviceId", referencedColumnName = "id")
-    private Device device;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "sensor", targetEntity = Record.class,cascade = CascadeType.ALL)
-    private Set<Record> records ;
 
-    public void setRecords(Set<Record> records) {
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = SensorType.class, cascade = CascadeType.ALL)
+    @JoinColumn(name="sensorTypeId", referencedColumnName = "id")
+    private SensorType sensorType;
+
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Station.class, cascade = CascadeType.ALL)
+    @JoinColumn(name="deviceId", referencedColumnName = "id")
+    private Station station;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sensor", targetEntity = Log.class,cascade = CascadeType.ALL)
+    private Set<Log> records ;
+
+    public void setRecords(Set<Log> records) {
         this.records = records;
     }
 
-    public Set<Record> getRecords() {
+    public Set<Log> getRecords() {
         return records;
     }
 
-    public Device getDevice() {
-        return device;
+    public Station getStation() {
+        return station;
     }
 
-    public void setDevice(Device device) {
-        this.device = device;
+    public void setStation(Station station) {
+        this.station = station;
     }
 
     public void setName(String name) {
@@ -45,7 +48,6 @@ public class Sensor {
         return name;
     }
 
-
     public Integer getId() {
         return id;
     }
@@ -54,4 +56,11 @@ public class Sensor {
         this.id = id;
     }
 
+    public SensorType getSensorType() {
+        return sensorType;
+    }
+
+    public void setSensorType(SensorType sensorType) {
+        this.sensorType = sensorType;
+    }
 }

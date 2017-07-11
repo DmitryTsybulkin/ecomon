@@ -1,14 +1,12 @@
 package com.itlab2017.services;
 
 
-import com.itlab2017.domain.Record;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import com.itlab2017.domain.Log;
 
 public interface RecordService {
-    Iterable<Record> listAllRecords();
+    Iterable<Log> listAllRecords();
 
-    Record getRecordById(Integer id);
+    Log getRecordById(Integer id);
 
-    Record saveRecord(Record Device);
+    Log saveRecord(Log Device);
 }

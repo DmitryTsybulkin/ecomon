@@ -8,12 +8,12 @@ import java.util.*;
 
 @Table(name = "device")
 @Entity
-public class Device {
+public class Station {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "device", targetEntity = Sensor.class,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "device", targetEntity = Sensor.class,cascade = CascadeType.ALL)
     private Set<Sensor> sensors ;
     private String name;
 

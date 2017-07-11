@@ -1,8 +1,7 @@
 package com.itlab2017.repositories;
 
-import com.itlab2017.domain.Device;
+import com.itlab2017.domain.Station;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
-public interface DeviceRepository extends JpaRepository<Device, Integer> {
+public interface DeviceRepository extends JpaRepository<Station, Integer> {
 }

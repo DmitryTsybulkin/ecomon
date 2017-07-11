@@ -1,12 +1,12 @@
 package com.itlab2017.services;
 
 
-import com.itlab2017.domain.Device;
+import com.itlab2017.domain.Station;
 
 public interface DeviceService {
-    Iterable<Device> listAllDevices();
+    Iterable<Station> listAllDevices();
 
-    Device getDeviceById(Integer id);
+    Station getDeviceById(Integer id);
 
-    Device saveDevice(Device Device);
+    Station saveDevice(Station Station);
 }

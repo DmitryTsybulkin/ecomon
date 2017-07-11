@@ -1,4 +1,4 @@
-//package com.itlab2017.configuration;
+    //package com.itlab2017.configuration;
 //
 //import io.moquette.server.Server;
 //import org.springframework.context.annotation.Bean;

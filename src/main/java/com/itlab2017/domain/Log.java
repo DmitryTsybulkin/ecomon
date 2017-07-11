@@ -8,13 +8,13 @@ import java.sql.Timestamp;
  */
 @Table(name = "record")
 @Entity
-public class Record {
+public class Log {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String value;
     private Timestamp timestamp;
-    @ManyToOne(fetch = FetchType.EAGER, targetEntity = Sensor.class, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Sensor.class, cascade = CascadeType.ALL)
     @JoinColumn(name="sensorId", referencedColumnName = "id")
     private Sensor sensor;
 

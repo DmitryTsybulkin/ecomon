@@ -1,6 +1,5 @@
 package com.itlab2017.controllers;
 
-import com.itlab2017.domain.Device;
 import com.itlab2017.services.DeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,12 +33,12 @@ public class DeviceController {
 
 
 //
-//    @RequestMapping(value = "Device", method = RequestMethod.POST)
-//    public String saveDevice(Device device){
+//    @RequestMapping(value = "Station", method = RequestMethod.POST)
+//    public String saveDevice(Station device){
 //
 //        DeviceService.saveDevice(device);
 //
-//        return "redirect:/Device/" + device.getId();
+//        return "redirect:/Station/" + device.getId();
 //    }
 
 }

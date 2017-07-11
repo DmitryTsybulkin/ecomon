@@ -1,6 +1,6 @@
 package com.itlab2017.services;
 
-import com.itlab2017.domain.Device;
+import com.itlab2017.domain.Station;
 import com.itlab2017.repositories.DeviceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,17 +15,17 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
-    public Iterable<Device> listAllDevices() {
+    public Iterable<Station> listAllDevices() {
         return DeviceRepository.findAll();
     }
 
     @Override
-    public Device getDeviceById(Integer id) {
+    public Station getDeviceById(Integer id) {
         return DeviceRepository.findOne(id);
     }
 
     @Override
-    public Device saveDevice(Device Device) {
-        return DeviceRepository.save(Device);
+    public Station saveDevice(Station Station) {
+        return DeviceRepository.save(Station);
     }
 }
