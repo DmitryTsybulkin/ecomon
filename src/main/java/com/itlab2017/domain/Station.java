@@ -9,6 +9,7 @@ import java.util.*;
 @Table(name = "device")
 @Entity
 public class Station {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
