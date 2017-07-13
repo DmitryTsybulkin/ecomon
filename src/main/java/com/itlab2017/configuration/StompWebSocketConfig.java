@@ -1,6 +1,5 @@
 package com.itlab2017.configuration;
 
-import com.itlab2017.handlers.StationWebSocketHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

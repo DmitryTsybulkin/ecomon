@@ -19,17 +19,17 @@ public class Sensor {
     private SensorType sensorType;
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Station.class, cascade = CascadeType.ALL)
-    @JoinColumn(name="deviceId", referencedColumnName = "id")
+    @JoinColumn(name="stationId", referencedColumnName = "id")
     private Station station;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "sensor", targetEntity = Log.class,cascade = CascadeType.ALL)
-    private Set<Log> records ;
+    private Set<Log> logs;
 
-    public void setRecords(Set<Log> records) {
-        this.records = records;
+    public void setLogs(Set<Log> logs) {
+        this.logs = logs;
     }
 
-    public Set<Log> getRecords() {
-        return records;
+    public Set<Log> getLogs() {
+        return logs;
     }
 
     public Station getStation() {

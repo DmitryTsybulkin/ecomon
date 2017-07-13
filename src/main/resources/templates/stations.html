@@ -8,7 +8,7 @@
 </head>
 <body>
 <div class="container">
-    <div th:if="${not #lists.isEmpty(devices)}">
+    <div th:if="${not #lists.isEmpty(stations)}">
         <h2>Список устройств</h2>
         <table class="table table-striped">
             <tr>
@@ -16,7 +16,7 @@
                 <th>Именование</th>
                 <th></th>
             </tr>
-            <tr th:each="station : ${devices}">
+            <tr th:each="station : ${stations}">
                 <td th:text="${station.id}"><a href="/station/${station.id}">Id</a></td>
                 <td th:text="${station.name}">Product Id</td>
                 <td><a th:href="${ '/station/' + station.id}">Подробнее...</a></td>

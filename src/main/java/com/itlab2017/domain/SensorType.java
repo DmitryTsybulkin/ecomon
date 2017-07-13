@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * Created by Lenovo on 07.07.2017.
  */
-@Table(name = "sensor")
+@Table(name = "sensorType")
 @Entity
 public class SensorType {
     @Id
