@@ -1,6 +1,6 @@
 package com.itlab2017.controllers;
 
-import com.itlab2017.services.DeviceService;
+import com.itlab2017.services.StationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,34 +9,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class DeviceController {
+public class StationController {
 
-    private DeviceService DeviceService;
+    private StationService stationService;
 
     @Autowired
-    public void setDeviceService(DeviceService DeviceService) {
-        this.DeviceService = DeviceService;
+    public void setStationService(StationService stationService) {
+        this.stationService = stationService;
     }
 
-    @RequestMapping(value = "/devices", method = RequestMethod.GET)
+    @RequestMapping(value = "/stations", method = RequestMethod.GET)
     public String list(Model model){
-        model.addAttribute("devices", DeviceService.listAllDevices());
-        System.out.println("Returning Devices:");
-        return "devices";
+        model.addAttribute("stations", stationService.listAllStations());
+        return "stations";
     }
 
-    @RequestMapping("device/{id}")
+    @RequestMapping("station/{id}")
     public String showDevice(@PathVariable Integer id, Model model){
-        model.addAttribute("device", DeviceService.getDeviceById(id));
-        return "deviceshow";
+        model.addAttribute("station", stationService.getStationById(id));
+        return "stationshow";
     }
 
 
 //
 //    @RequestMapping(value = "Station", method = RequestMethod.POST)
-//    public String saveDevice(Station device){
+//    public String saveStation(Station device){
 //
-//        DeviceService.saveDevice(device);
+//        stationService.saveStation(device);
 //
 //        return "redirect:/Station/" + device.getId();
 //    }
