@@ -7,25 +7,25 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StationServiceImpl implements StationService {
-    private StationRepository StationRepository;
+    private StationRepository stationRepository;
 
     @Autowired
-    public void setStationRepository(StationRepository StationRepository) {
-        this.StationRepository = StationRepository;
+    public void setStationRepository(StationRepository stationRepository) {
+        this.stationRepository = stationRepository;
     }
 
     @Override
     public Iterable<Station> listAllStations() {
-        return StationRepository.findAll();
+        return stationRepository.findAll();
     }
 
     @Override
     public Station getStationById(Integer id) {
-        return StationRepository.findOne(id);
+        return stationRepository.findOne(id);
     }
 
     @Override
     public Station saveStation(Station Station) {
-        return StationRepository.save(Station);
+        return stationRepository.save(Station);
     }
 }
