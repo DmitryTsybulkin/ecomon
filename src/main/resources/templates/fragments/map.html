@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Penza_Map</title>
+    <link href="https://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"    rel="stylesheet" media="screen"/>
+    <link href="../css/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora&amp;subset=cyrillic" rel="stylesheet">
+    <script src = "http://maps.google.com/maps/api/js"></script>
+    <script type="text/javascript" src = "https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.js"></script>
+    <style type="text/css">
+        html { height: 100% }
+        body { height: 100%; margin: 0px; padding: 0px }
+        #map { height: 100% }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+
+<script>
+    var map = new GMaps
+    ({
+        el: '#map',
+        lat: 53.215518, //широта
+        lng: 45.006083 // долгота
+    });
+</script>
+
+<script>
+    map.addMarker({
+        lat: 53.215518,
+        lng: 45.006083,
+        title: 'sads',
+        click: function(e) {
+            alert('You clicked in this marker');
+        },
+        infoWindow: {
+            content: '<p> Parshin Business incubator</p>'
+        }
+    });
+</script>
+</body>
+</html>
