@@ -1,6 +1,7 @@
 package com.itlab2017.bootstrap;
 
 import com.itlab2017.configuration.MQTTConfiguration;
+import com.itlab2017.factories.MqttClientFactory;
 import com.itlab2017.handlers.MqttCallbackHandler;
 import com.itlab2017.repositories.StationRepository;
 import org.apache.log4j.Logger;
@@ -17,22 +18,10 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
     @Autowired
     private StationRepository stationRepository;
     private Logger log = Logger.getLogger(Initializer.class);
-    @Autowired
-    @Qualifier("subscriper")
-    private MqttClient mqttClient;
-    @Autowired
-    private MqttCallbackHandler mqttCallbackHandler;
-
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event)  {
 
-          mqttClient.setCallback(mqttCallbackHandler);
-          try {
-              mqttClient.subscribe("#");
-          }catch (MqttException e){
-
-          }
 //        Station station = new Station();
 //        station.setName("Ардуино №1");
 //

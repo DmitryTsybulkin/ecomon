@@ -5,6 +5,7 @@ import com.itlab2017.bootstrap.Initializer;
 import com.itlab2017.domain.Log;
 import com.itlab2017.domain.Sensor;
 import com.itlab2017.domain.Station;
+import com.itlab2017.factories.MqttClientFactory;
 import com.itlab2017.mappedJSON.*;
 import com.itlab2017.repositories.LogRepository;
 import com.itlab2017.repositories.SensorRepository;
@@ -27,12 +28,7 @@ public class MqttCallbackHandler implements MqttCallback {
 
     private Logger log = Logger.getLogger(Initializer.class);
     @Autowired
-    @Qualifier("subscriper")
-    private MqttClient mqttClient;
-    @Autowired
-    @Qualifier("sender")
-    private MqttClient mqttClientSender;
-
+    private MqttClientFactory mqttClientFactory;
     @Autowired
     private StationRepository stationRepository;
     @Autowired
@@ -80,7 +76,7 @@ public class MqttCallbackHandler implements MqttCallback {
                 responseTopic+="getId/response/" + apiGetId.getRequestHash();
                 apiResponse = new ApiGetIdResponse(Status.OK, station.getId(), sensorsIds.toArray(new Integer[sensorsIds.size()]));
                 response.setPayload(objectMapper.writeValueAsBytes(apiResponse));
-                mqttClientSender.publish(responseTopic+"", response);
+                mqttClientFactory.getSender().publish(responseTopic+"", response);
                 log.info("Отправлено: "+ response.toString());
             }
             if(topic.endsWith("update")) {
@@ -100,7 +96,7 @@ public class MqttCallbackHandler implements MqttCallback {
                     log.info("Обновление успешно");
                 }
             }} catch (Exception e){
-
+                throw e;
             }
 
         }
