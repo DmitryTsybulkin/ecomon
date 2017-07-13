@@ -5,97 +5,95 @@
 <head lang="en">
 
     <title>Spring Framework Guru</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"    rel="stylesheet" media="screen"/>
 
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script src="../../static/canvasjs.min.js" th:src="@{/canvasjs.min.js}"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+    ></script>
+    <script src="https://www.google.com/jsapi"></script>
+    <script>
+        function makeChart() {
+            var that = this;
+
+            that.dps = []; // dataPoints
+
+            that.chart = new CanvasJS.Chart("colChartContainer",{
+                title :{
+                    text: "[[${sensor.name}]]"
+                },
+                data: [{
+                    type: "line",
+                    dataPoints: that.dps
+                }],
+                axisY:{
+                    title: "Температура",
+                    tickLength: 10,
+                    interval: 1
+                },
+                axisX:{
+                    valueFormatString: "HH:mm:ss",
+                    title: "Время",
+                },
+            });
+
+
+            that.updateChart = function (data) {
+                that.dps.push({
+                    x: new Date(data.time),
+                    y: parseFloat(data.data)
+                });
+                if (that.dps.length > 500)
+                {
+                    that.dps.shift();
+                }
+
+                that.chart.render();
+
+            };
+            that.socket = new SockJS('/gs-guide-websocket');
+            that.stompClient = Stomp.over(socket);
+            that.stompClient.connect({}, function (frame) {
+                console.log('Connected: ' + frame);
+                stompClient.subscribe('/topic/greetings', function (message) {
+                    var msg = JSON.parse(message.body);
+                    that.updateChart(msg);
+                });
+            });
+            setInterval(function(){
+                that.stompClient.send("/app/hello", {}, JSON.stringify({'name': [[${sensor.id}]]}));
+            }, 200);
+
+        }
+        var runButton = document.getElementById("run");
+        runButton.addEventListener("click", makeChart);
+    </script>
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-<div class="container">
-    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-=
 
-=
-    <h2 th:text="${station.name}"></h2>
-    <div>
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label class="col-sm-2 control-label">ИД:</label>
-                <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${station.id}">Product Id</p></div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Именование:</label>
-                <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${station.name}">description</p>
-                </div>
-            </div>
-            <div class="form-group" th:each="sensor : ${station.sensors}">
-                <script th:inline="javascript">
-                    //<![CDATA[
-                    window.onload = function () {
-                        var that = this;
+    <div class = "container-fluid">
+        <div class = "row text-center">
+            <h1>Пост №1</h1>
+            <img style="height: 200px; width: 200px;" src="../static/images/total_mark.png" th:href="@{/images/total_mark.png}"/>
+            <p>Воздух в идеальном состоянии</p>
 
-                        that.dps = []; // dataPoints
+            <button type="button" style="border: 0; background-color: transparent">
+                <img style="height: 150px; width: 150px;" src="../static/images/gradus.png" th:href="@{images/gradus.png}"/>
+            </button>
 
-                        that.chart = new CanvasJS.Chart("chart-[[${sensor.id}]]",{
-                            title :{
-                                text: "[[${sensor.name}]]"
-                            },
-                            data: [{
-                                type: "line",
-                                dataPoints: that.dps
-                            }],
-                            axisY:{
-                                title: "Температура",
-                                tickLength: 10,
-                                interval: 1
-                            },
-                            axisX:{
-                                valueFormatString: "HH:mm:ss",
-                                title: "Время",
-                            },
-                        });
+            <button type="button" style="border: 0; background-color: transparent">
+                <img style="height: 150px; width: 150px;" src="../static/images/water_mark.png" th:href="@{images/water_mark.png}"/>
+            </button>
 
-
-                        that.updateChart = function (data) {
-                                that.dps.push({
-                                    x: new Date(data.time),
-                                    y: parseFloat(data.data)
-                                });
-                            if (that.dps.length > 500)
-                            {
-                                that.dps.shift();
-                            }
-
-                            that.chart.render();
-
-                        };
-                        that.socket = new SockJS('/gs-guide-websocket');
-                        that.stompClient = Stomp.over(socket);
-                        that.stompClient.connect({}, function (frame) {
-                            console.log('Connected: ' + frame);
-                            stompClient.subscribe('/topic/greetings', function (message) {
-                                var msg = JSON.parse(message.body);
-                                that.updateChart(msg);
-                            });
-                        });
-                        setInterval(function(){
-                            that.stompClient.send("/app/hello", {}, JSON.stringify({'name': [[${sensor.id}]]}));
-                        }, 200);
-
-                    }
-                    //]]>
-                </script>
-            <div th:id="'chart-' + ${sensor.id}" ></div>
-            </div>
-            <!--<div class="form-group">-->
-                <!--<label class="col-sm-2 control-label">Image Url:</label>-->
-                <!--<div class="col-sm-10">-->
-                    <!--<p class="form-control-static" th:text="${station.imageUrl}">url....</p>-->
-                <!--</div>-->
-            <!--</div>-->
-        </form>
+            <button id = "run" type="button" style="border: 0; background-color: transparent" onclick="charte()">
+                <img style="height: 150px; width: 150px;" src="../static/images/pm25.png" th:href="@{images/pm25.png}"/>
+            </button>
+        </div>
     </div>
-</div>
-
 </body>
 </html>
