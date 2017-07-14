@@ -4,11 +4,12 @@
 
     <title>Ecomon</title>
 
-    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
 <div class="container">
     <div th:if="${not #lists.isEmpty(stations)}">
+
         <h2>Список устройств</h2>
         <table class="table table-striped">
             <tr>
