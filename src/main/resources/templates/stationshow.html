@@ -30,19 +30,18 @@
                 $(function () {
                     var that = this;
                     that.updateChart = function (data) {
-                            for(var i=0;i<window.charts.length;i++){
-                                if(!data.sensorId == window.charts[i].sensorId)
-                                    continue;
-                                var chart = window.charts[i];
-                            chart.dps.push({
-                                x: new Date(data.time),
-                                y: parseFloat(data.data)
-                            });
-                            if (chart.dps.length > 500) {
-                                chart.dps.shift();
-                            }
-                            chart.render();
-                            }
+                            for(var i=0;i<window.charts.length;i++)
+                                if(data.sensorId == window.charts[i].sensorId) {
+                                    var chart = window.charts[i];
+                                    chart.dps.push({
+                                        x: new Date(data.time),
+                                        y: parseFloat(data.data)
+                                    });
+                                    if (chart.dps.length > 500) {
+                                        chart.dps.shift();
+                                    }
+                                    chart.render();
+                                }
                     };
                     var socket = new SockJS('/gs-guide-websocket');
                     that.stompClient = Stomp.over(socket);
@@ -69,15 +68,15 @@
                     //<![CDATA[
                     $(function(){
                         var that = this;
-                        that.dps = [];
+                        that.dps[[${sensor.id}]] = [];
 
-                        that.chart = new CanvasJS.Chart("chart-[[${sensor.id}]]", {
+                        that.chart[[${sensor.id}]] = new CanvasJS.Chart("chart-[[${sensor.id}]]", {
                             title: {
                                 text: "[[${sensor.sensorType.name}]]"
                             },
                             data: [{
                                 type: "line",
-                                dataPoints: that.dps
+                                dataPoints: that.dps[[${sensor.id}]]
                             }],
                             axisY: {
                                 title: "[[${sensor.sensorType.sensorKind.toString()}]]]",
@@ -87,9 +86,9 @@
                                 title: "Время",
                             },
                         });
-                        that.chart.dps = that.dps;
-                        that.chart.sensorId = "[[${sensor.id}]]";
-                        window.charts.push(that.chart);
+                        that.chart[[${sensor.id}]].dps = that.dps[[${sensor.id}]];
+                        that.chart[[${sensor.id}]].sensorId = "[[${sensor.id}]]";
+                        window.charts.push(that.chart[[${sensor.id}]]);
 
                     });
                     //]]>
