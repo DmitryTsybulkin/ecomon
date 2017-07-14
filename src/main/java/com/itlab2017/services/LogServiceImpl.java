@@ -4,6 +4,8 @@ import com.itlab2017.domain.Log;
 import com.itlab2017.repositories.LogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service

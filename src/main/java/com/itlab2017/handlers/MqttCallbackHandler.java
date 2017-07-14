@@ -13,8 +13,6 @@ import com.itlab2017.repositories.StationRepository;
 import org.apache.log4j.Logger;
 import org.eclipse.paho.client.mqttv3.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
@@ -60,9 +58,9 @@ public class MqttCallbackHandler implements MqttCallback {
                 station.setName(apiGetId.getName());
                 station.setApiKey(apiGetId.getApiKey());
                 Set<Sensor> sensors = new HashSet<Sensor>();
-                for(SensorType sensorType : apiGetId.getSensorTypes()){
+                for(SensorKind sensorKind : apiGetId.getSensorKinds()){
                     Sensor sensor = new Sensor();
-                    sensor.setName(sensorType.name());
+                    sensor.setName(sensorKind.name());
                     sensor.setStation(station);
                     sensors.add(sensor);
                 }
@@ -85,11 +83,10 @@ public class MqttCallbackHandler implements MqttCallback {
                 Station station = stationRepository.findOne(apiUpdate.getId());
                 if(apiUpdate.getApiKey().equals(station.getApiKey())) {
                     for ( Map.Entry<Integer, String> entry : apiUpdate.getSensorsData().entrySet()) {
-                        Sensor sensor = sensorRepository.findOne(entry.getKey());
                         Log log = new Log();
                         log.setTimestamp(new Timestamp(System.currentTimeMillis()));
                         log.setValue(entry.getValue());
-                        log.setSensor_id(sensor.getId());
+                        log.setSensor_id(entry.getKey());
                         logRepository.saveAndFlush(log);
 //                        sensorRepository.saveAndFlush(sensor);
                     }

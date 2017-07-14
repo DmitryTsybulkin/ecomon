@@ -10,10 +10,6 @@
 </head>
 <body>
 <div class="container">
-    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-=
-
-=
     <h2 th:text="${station.name}"></h2>
     <div>
         <form class="form-horizontal">
@@ -28,64 +24,73 @@
                     <p class="form-control-static" th:text="${station.name}">description</p>
                 </div>
             </div>
+            <script th:inline="javascript">
+                //<![CDATA[
+                window.charts = [];
+                window.onload = function () {
+                    var that = this;
+                    that.updateChart = function (data) {
+                            for(var i=0;i<window.charts.length;i++){
+                                if(!data.sensorId == window.charts[i].sensorId)
+                                    continue;
+                                var chart = window.charts[i];
+                            chart.dps.push({
+                                x: new Date(data.time),
+                                y: parseFloat(data.data)
+                            });
+                            if (chart.dps.length > 500) {
+                                chart.dps.shift();
+                            }
+                            chart.render();
+                            }
+                    };
+                    that.socket = new SockJS('/gs-guide-websocket');
+                    that.stompClient = Stomp.over(socket);
+                    that.stompClient.connect({}, function (frame) {
+                        console.log('Connected: ' + frame);
+                        stompClient.subscribe('/topic/greetings', function (message) {
+                            var msg = JSON.parse(message.body);
+                            $.each(msg, function(index, data){
+                                that.updateChart(data);
+                            });
+                        });
+                    });
+                    setInterval(function(){
+                        that.stompClient.send("/app/hello", {}, JSON.stringify({'name': ''}));
+                    }, 200);
+
+                }
+                //]]>
+            </script>
             <div class="form-group" th:each="sensor : ${station.sensors}">
+
+                <div th:id="'chart-' + ${sensor.id}" ></div>
                 <script th:inline="javascript">
                     //<![CDATA[
-                    window.onload = function () {
-                        var that = this;
-
-                        that.dps = []; // dataPoints
-
-                        that.chart = new CanvasJS.Chart("chart-[[${sensor.id}]]",{
-                            title :{
+                        var dps = [];
+                        var chart = new CanvasJS.Chart("chart-[[${sensor.id}]]", {
+                            title: {
                                 text: "[[${sensor.name}]]"
                             },
                             data: [{
                                 type: "line",
-                                dataPoints: that.dps
+                                dataPoints: dps
                             }],
-                            axisY:{
-                                title: "Температура",
+                            axisY: {
+                                title: "[[${sensor.sensorType.sensorKind.toString()}]]]",
                                 tickLength: 10,
                                 interval: 1
                             },
-                            axisX:{
+                            axisX: {
                                 valueFormatString: "HH:mm:ss",
                                 title: "Время",
                             },
                         });
-
-
-                        that.updateChart = function (data) {
-                                that.dps.push({
-                                    x: new Date(data.time),
-                                    y: parseFloat(data.data)
-                                });
-                            if (that.dps.length > 500)
-                            {
-                                that.dps.shift();
-                            }
-
-                            that.chart.render();
-
-                        };
-                        that.socket = new SockJS('/gs-guide-websocket');
-                        that.stompClient = Stomp.over(socket);
-                        that.stompClient.connect({}, function (frame) {
-                            console.log('Connected: ' + frame);
-                            stompClient.subscribe('/topic/greetings', function (message) {
-                                var msg = JSON.parse(message.body);
-                                that.updateChart(msg);
-                            });
-                        });
-                        setInterval(function(){
-                            that.stompClient.send("/app/hello", {}, JSON.stringify({'name': [[${sensor.id}]]}));
-                        }, 200);
-
-                    }
+                        chart.dps = dps;
+                        chart.sensorId = "[[${sensor.id}]]";
+                        window.charts.push(chart);
                     //]]>
                 </script>
-            <div th:id="'chart-' + ${sensor.id}" ></div>
             </div>
             <!--<div class="form-group">-->
                 <!--<label class="col-sm-2 control-label">Image Url:</label>-->

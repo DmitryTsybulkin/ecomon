@@ -17,9 +17,10 @@ public class Sensor {
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = SensorType.class, cascade = CascadeType.ALL)
     @JoinColumn(name="sensorTypeId", referencedColumnName = "id")
     private SensorType sensorType;
-
+    @Column(name = "station_id")
+    private Integer station_id;
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Station.class, cascade = CascadeType.ALL)
-    @JoinColumn(name="stationId", referencedColumnName = "id")
+    @JoinColumn(insertable = false, updatable = false, name="station_id", referencedColumnName = "id")
     private Station station;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "sensor", targetEntity = Log.class,cascade = CascadeType.ALL)
     private Set<Log> logs;
@@ -62,5 +63,13 @@ public class Sensor {
 
     public void setSensorType(SensorType sensorType) {
         this.sensorType = sensorType;
+    }
+
+    public void setStation_id(Integer station_id) {
+        this.station_id = station_id;
+    }
+
+    public Integer getStation_id() {
+        return station_id;
     }
 }

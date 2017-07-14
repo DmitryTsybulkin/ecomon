@@ -15,7 +15,8 @@ public class Log {
     private String value;
     private Timestamp timestamp;
     @Column(name = "sensor_id")
-    private Integer sensor_id;@ManyToOne(fetch = FetchType.LAZY, targetEntity = Sensor.class, cascade = CascadeType.ALL)
+    private Integer sensor_id;
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Sensor.class, cascade = CascadeType.ALL)
     @JoinColumn(insertable = false, updatable = false, name="sensor_id", referencedColumnName = "id")
     private Sensor sensor;
 

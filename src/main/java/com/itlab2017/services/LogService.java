@@ -10,5 +10,5 @@ public interface LogService {
 
     Log getLogById(Integer id);
 
-    Log saveLog(Log Device);
+    Log saveLog(Log log);
 }

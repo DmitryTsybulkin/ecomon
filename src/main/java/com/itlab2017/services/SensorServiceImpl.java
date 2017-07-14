@@ -5,27 +5,33 @@ import com.itlab2017.repositories.SensorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SensorServiceImpl implements SensorService {
-    private SensorRepository SensorRepository;
-
     @Autowired
-    public void setSensorRepository(SensorRepository SensorRepository) {
-        this.SensorRepository = SensorRepository;
-    }
+    private SensorRepository sensorRepository;
 
     @Override
     public Iterable<Sensor> listAllSensors() {
-        return SensorRepository.findAll();
+        return sensorRepository.findAll();
     }
 
     @Override
     public Sensor getSensorById(Integer id) {
-        return SensorRepository.findOne(id);
+        return sensorRepository.findOne(id);
     }
 
     @Override
     public Sensor saveSensor(Sensor Sensor) {
-        return SensorRepository.save(Sensor);
+        return sensorRepository.save(Sensor);
     }
+
+    @Override
+    public List<Sensor> getSensorsByStationId(Integer stationId) {
+        return sensorRepository.findAll((root, criteriaQuery, criteriaBuilder) -> {
+            return criteriaBuilder.equal(root.get("station_id"), stationId);
+        });
+    }
+
 }

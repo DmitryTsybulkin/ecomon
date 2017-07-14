@@ -1,11 +1,11 @@
 package com.itlab2017.controllers;
 
-import com.itlab2017.domain.HelloMessage;
-import com.itlab2017.domain.Message;
-import com.itlab2017.domain.Log;
-import com.itlab2017.domain.Sensor;
+import com.itlab2017.domain.*;
+import com.itlab2017.repositories.SensorRepository;
+import com.itlab2017.repositories.StationRepository;
 import com.itlab2017.services.LogService;
 import com.itlab2017.services.SensorService;
+import com.itlab2017.services.StationService;
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
@@ -20,30 +20,33 @@ import java.util.List;
 
 @Controller
 public class WebApiController {
-
+    @Autowired
+    private StationRepository stationRepository;
     @Autowired
     private SensorService sensorService;
     @Autowired
     private LogService logService;
-
     @Autowired
-    private SimpMessagingTemplate simpMessagingTemplate;
-
+    private StationService stationService;
     @MessageMapping("/hello")
     @SendTo("/topic/greetings")
-    public Message greeting(HelloMessage message) throws Exception {
+    public List<Message> greeting(HelloMessage message) throws Exception {
 
+        List<Message> messages = new ArrayList<Message>();
 
-        List<Log> logs = logService.getLogsBySensorId(Integer.parseInt(message.getName()));
-        if(logs.size()<1)return null;
-        Collections.sort(logs,new Comparator<Log>() {
-            @Override
-            public int compare(Log o1, Log o2) {
-                return o1.getTimestamp().compareTo(o2.getTimestamp());
-            }
-        });
-        Log record = logs.get(logs.size()-1);
-        return new Message(record.getValue(), record.getTimestamp());
+        for(Sensor sensor : sensorService.getSensorsByStationId(1)){
+            List<Log> logs = logService.getLogsBySensorId(sensor.getId());
+            if(logs.size()<1) continue;
+            Collections.sort(logs,new Comparator<Log>() {
+                @Override
+                public int compare(Log o1, Log o2) {
+                    return o1.getTimestamp().compareTo(o2.getTimestamp());
+                }
+            });
+            Log log = logs.get(logs.size()-1);
+            messages.add(new Message(log.getValue(), log.getTimestamp(), log.getSensor_id()));
+        };
+        return messages;
     }
 
 }
