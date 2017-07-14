@@ -8,15 +8,25 @@ public enum SensorKind {
         public String toString() {
             return "Датчик температуры";
         }
+        public String toValueType() {
+            return "Температура";
+        }
     },
     NOISE {
         public String toString() {
             return "Датчик шума";
         }
+        public String toValueType() {
+            return "Интенсивность шума";
+        }
     },
     LIGHT {
         public String toString() {
             return "Датчик света";
+        }
+
+        public String toValueType() {
+            return "Интенсивность света";
         }
     }
 }
