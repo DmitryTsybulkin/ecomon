@@ -64,13 +64,15 @@
             </script>
             <div class="form-group" th:each="sensor : ${station.sensors}">
 
-                <div th:id="'chart-' + ${sensor.id}" ></div>
+                <div style="height: 500px;" th:id="'chart-' + ${sensor.id}" >
+                </div>
                 <script th:inline="javascript">
                     //<![CDATA[
                         var dps = [];
+
                         var chart = new CanvasJS.Chart("chart-[[${sensor.id}]]", {
                             title: {
-                                text: "[[${sensor.name}]]"
+                                text: "[[${sensor.sensorType.name}]]"
                             },
                             data: [{
                                 type: "line",
@@ -78,8 +80,8 @@
                             }],
                             axisY: {
                                 title: "[[${sensor.sensorType.sensorKind.toString()}]]]",
-                                tickLength: 10,
-                                interval: 1
+                                tickLength: 50,
+                                interval: 10
                             },
                             axisX: {
                                 valueFormatString: "HH:mm:ss",
