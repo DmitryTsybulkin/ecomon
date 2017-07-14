@@ -31,6 +31,11 @@ public class SensorType {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
+
     public void setSensorKind(SensorKind sensorKind) {
         this.sensorKind = sensorKind;
     }
