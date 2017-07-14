@@ -63,7 +63,6 @@
                 //]]>
             </script>
             <div class="form-group" th:each="sensor : ${station.sensors}">
-
                 <div style="height: 500px;" th:id="'chart-' + ${sensor.id}" >
                 </div>
                 <script th:inline="javascript">
