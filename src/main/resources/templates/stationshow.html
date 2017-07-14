@@ -68,16 +68,16 @@
                 <script th:inline="javascript">
                     //<![CDATA[
                     $(function(){
+                        var that = this;
+                        that.dps = [];
 
-                        var dps = [];
-
-                        var chart = new CanvasJS.Chart("chart-[[${sensor.id}]]", {
+                        that.chart = new CanvasJS.Chart("chart-[[${sensor.id}]]", {
                             title: {
                                 text: "[[${sensor.sensorType.name}]]"
                             },
                             data: [{
                                 type: "line",
-                                dataPoints: dps
+                                dataPoints: that.dps
                             }],
                             axisY: {
                                 title: "[[${sensor.sensorType.sensorKind.toString()}]]]",
@@ -87,9 +87,9 @@
                                 title: "Время",
                             },
                         });
-                        chart.dps = dps;
-                        chart.sensorId = "[[${sensor.id}]]";
-                        window.charts.push(chart);
+                        that.chart.dps = that.dps;
+                        that.chart.sensorId = "[[${sensor.id}]]";
+                        window.charts.push(that.chart);
                     });
                     //]]>
                 </script>
