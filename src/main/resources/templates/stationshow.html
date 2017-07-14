@@ -48,7 +48,7 @@
                     that.stompClient = Stomp.over(socket);
                     that.stompClient.connect({}, function (frame) {
                         console.log('Connected: ' + frame);
-                        stompClient.subscribe('/topic/greetings', function (message) {
+                        that.stompClient.subscribe('/topic/greetings', function (message) {
                             var msg = JSON.parse(message.body);
                             $.each(msg, function(index, data){
                                 that.updateChart(data);
