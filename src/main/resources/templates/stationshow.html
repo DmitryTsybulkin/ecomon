@@ -27,7 +27,7 @@
             <script th:inline="javascript">
                 //<![CDATA[
                 window.charts = [];
-                window.onload = function () {
+                $(function () {
                     var that = this;
                     that.updateChart = function (data) {
                             for(var i=0;i<window.charts.length;i++){
@@ -44,9 +44,9 @@
                             chart.render();
                             }
                     };
-                    that.socket = new SockJS('/gs-guide-websocket');
-                    that.stompClient = Stomp.over(socket);
-                    that.stompClient.connect({}, function (frame) {
+                    var socket = new SockJS('/gs-guide-websocket');
+                    var stompClient = Stomp.over(socket);
+                    stompClient.connect({}, function (frame) {
                         console.log('Connected: ' + frame);
                         stompClient.subscribe('/topic/greetings', function (message) {
                             var msg = JSON.parse(message.body);
@@ -59,7 +59,7 @@
                         that.stompClient.send("/app/hello", {}, JSON.stringify({'name': ''}));
                     }, 200);
 
-                }
+                });
                 //]]>
             </script>
             <div class="form-group" th:each="sensor : ${station.sensors}">
@@ -68,6 +68,8 @@
                 </div>
                 <script th:inline="javascript">
                     //<![CDATA[
+                    $(function(){
+
                         var dps = [];
 
                         var chart = new CanvasJS.Chart("chart-[[${sensor.id}]]", {
@@ -89,6 +91,7 @@
                         chart.dps = dps;
                         chart.sensorId = "[[${sensor.id}]]";
                         window.charts.push(chart);
+                    });
                     //]]>
                 </script>
             </div>
