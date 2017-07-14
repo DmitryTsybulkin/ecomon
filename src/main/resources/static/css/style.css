@@ -45,7 +45,7 @@ ul {
 li {
     font-size: 24px;
     list-style: none; /* Убираем исходные маркеры */
-    background: url(../../static/images/marker.png) left center no-repeat; /* Параметры фона */
+    background: url(../images/marker.png) left center no-repeat; /* Параметры фона */
     float: right; /* Смещаем текст вправо */
     padding-left: 54px;
 

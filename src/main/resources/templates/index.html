@@ -4,7 +4,7 @@
     <title>Spring Framework Guru</title>
     <link href="https://fonts.googleapis.com/css?family=Lora&amp;subset=cyrillic" rel="stylesheet"/>
     <link href="https://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"    rel="stylesheet" media="screen"/>
-    <link th:src="@{/css/style.css}"  rel="stylesheet"/>
+    <link href="../static/css/style.css" th:href="@{/css/style.css}" rel="stylesheet"/>
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
@@ -15,7 +15,7 @@
             <h3>Penza</h3>
             <div class = "container-fluid menu">
                 <p class = "menu">
-                    <span><a th:href="@{map.html}">Карта </a></span>
+                    <span><a href="map.html" th:href="@{map.html}">Карта </a></span>
                     <span><a th:href="@{stations.html}">Посты </a></span>
                     <span><a href="contacts.html">Контакты</a></span>
                 </p>
