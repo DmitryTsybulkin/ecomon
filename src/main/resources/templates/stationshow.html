@@ -8,143 +8,140 @@
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-<div class="container">
 
-    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-
-
-    <h2 th:text="${station.name}"></h2>
-    <div>
-        <form class="form-horizontal">
-            <div class="form-group">
-                <label class="col-sm-2 control-label">ИД:</label>
-                <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${station.id}">Product Id</p></div>
-            </div>
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Именование:</label>
-                <div class="col-sm-10">
-                    <p class="form-control-static" th:text="${station.name}">description</p>
+    <div class="container">
+        <h2 th:text="${station.name}"></h2>
+        <div>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">ИД:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${station.id}">Product Id</p></div>
                 </div>
-            </div>
-            <div class="form-group">
-            <div id="map" style="width:100%;height:350px"></div>
-            <script th:inline="javascript">
-                //<![CDATA[
-                function initMap() {
-                    var uluru = {lat: 53.200663, lng: 45.00464};
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 4,
-                        center: uluru,
-                        zoom: 9,
-                        mapTypeId: google.maps.MapTypeId.HYBRID,
-                        scrollwheel: false,
-                        draggable: false,
-                        panControl: true,
-                        zoomControl: true,
-                        mapTypeControl: true,
-                        scaleControl: true,
-                        streetViewControl: true,
-                        overviewMapControl: true,
-                        rotateControl: true,
-                    });
-                    var marker = new google.maps.Marker({
-                        position: uluru,
-                        label: "[[${station.name}]]",
-                        map: map
-                    });
-                    google.maps.event.trigger(map, "resize")
-                }
-                //]]>
-            </script>
-
-            <script defer="defer" async="async"
-                               src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMmvXQD63vFqBa4oARrGCe6lH2xPqdjvA&amp;callback=initMap">
-
-           </script>
-
-
-            </div>
-            <script th:inline="javascript">
-                //<![CDATA[
-                window.charts = [];
-                $(function () {
-                    var that = this;
-                    that.updateChart = function (data) {
-                            for(var i=0;i<window.charts.length;i++)
-                                if(data.sensorId == window.charts[i].sensorId) {
-                                    var chart = window.charts[i];
-                                    chart.dps.push({
-                                        x: new Date(data.time),
-                                        y: parseFloat(data.data)
-                                    });
-                                    if (chart.dps.length > 500) {
-                                        chart.dps.shift();
-                                    }
-                                    chart.render();
-                                }
-                    };
-                    var socket = new SockJS('/gs-guide-websocket');
-                    that.stompClient = Stomp.over(socket);
-                    that.stompClient.connect({}, function (frame) {
-                        console.log('Connected: ' + frame);
-                        that.stompClient.subscribe('/topic/greetings', function (message) {
-                            var msg = JSON.parse(message.body);
-                            $.each(msg, function(index, data){
-                                that.updateChart(data);
-                            });
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Именование:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static" th:text="${station.name}">description</p>
+                    </div>
+                </div>
+                <div class="form-group">
+                <div id="map" style="width:100%;height:350px"></div>
+                <script th:inline="javascript">
+                    //<![CDATA[
+                    function initMap() {
+                        var uluru = {lat: 53.200663, lng: 45.00464};
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                            zoom: 4,
+                            center: uluru,
+                            zoom: 9,
+                            mapTypeId: google.maps.MapTypeId.HYBRID,
+                            scrollwheel: false,
+                            draggable: false,
+                            panControl: true,
+                            zoomControl: true,
+                            mapTypeControl: true,
+                            scaleControl: true,
+                            streetViewControl: true,
+                            overviewMapControl: true,
+                            rotateControl: true,
                         });
-                    });
-                    setInterval(function(){
-                        that.stompClient.send("/app/hello", {}, JSON.stringify({'name': ''}));
-                    }, 200);
+                        var marker = new google.maps.Marker({
+                            position: uluru,
+                            label: "[[${station.name}]]",
+                            map: map
+                        });
+                        google.maps.event.trigger(map, "resize")
+                    }
+                    //]]>
+                </script>
 
-                });
-                //]]>
-            </script>
-            <div class="form-group" th:each="sensor : ${station.sensors}">
-                <div style="height: 500px;" th:id="'chart-' + ${sensor.id}" >
+                <script defer="defer" async="async"
+                                   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMmvXQD63vFqBa4oARrGCe6lH2xPqdjvA&amp;callback=initMap">
+
+               </script>
+
+
                 </div>
                 <script th:inline="javascript">
                     //<![CDATA[
-                    $(function(){
+                    window.charts = [];
+                    $(function () {
                         var that = this;
-                        that.dps[[${sensor.id}]] = [];
-
-                        that.chart[[${sensor.id}]] = new CanvasJS.Chart("chart-[[${sensor.id}]]", {
-                            title: {
-                                text: "[[${sensor.sensorType.name}]]"
-                            },
-                            data: [{
-                                type: "line",
-                                dataPoints: that.dps[[${sensor.id}]]
-                            }],
-                            axisY: {
-                                title: "[[${sensor.sensorType.sensorKind.toValueType()}]]",
-                            },
-                            axisX: {
-                                valueFormatString: "HH:mm:ss",
-                                title: "Время",
-                            },
+                        that.updateChart = function (data) {
+                                for(var i=0;i<window.charts.length;i++)
+                                    if(data.sensorId == window.charts[i].sensorId) {
+                                        var chart = window.charts[i];
+                                        chart.dps.push({
+                                            x: new Date(data.time),
+                                            y: parseFloat(data.data)
+                                        });
+                                        if (chart.dps.length > 500) {
+                                            chart.dps.shift();
+                                        }
+                                        chart.render();
+                                    }
+                        };
+                        var socket = new SockJS('/gs-guide-websocket');
+                        that.stompClient = Stomp.over(socket);
+                        that.stompClient.connect({}, function (frame) {
+                            console.log('Connected: ' + frame);
+                            that.stompClient.subscribe('/topic/greetings', function (message) {
+                                var msg = JSON.parse(message.body);
+                                $.each(msg, function(index, data){
+                                    that.updateChart(data);
+                                });
+                            });
                         });
-                        that.chart[[${sensor.id}]].dps = that.dps[[${sensor.id}]];
-                        that.chart[[${sensor.id}]].sensorId = "[[${sensor.id}]]";
-                        window.charts.push(that.chart[[${sensor.id}]]);
+                        setInterval(function(){
+                            that.stompClient.send("/app/hello", {}, JSON.stringify({'name': ''}));
+                        }, 200);
 
                     });
                     //]]>
                 </script>
-            </div>
-            <!--<div class="form-group">-->
-                <!--<label class="col-sm-2 control-label">Image Url:</label>-->
-                <!--<div class="col-sm-10">-->
-                    <!--<p class="form-control-static" th:text="${station.imageUrl}">url....</p>-->
-                <!--</div>-->
-            <!--</div>-->
+                <div class="form-group" th:each="sensor : ${station.sensors}">
+                    <div style="height: 500px;" th:id="'chart-' + ${sensor.id}" >
+                    </div>
+                    <script th:inline="javascript">
+                        //<![CDATA[
+                        $(function(){
+                            var that = this;
+                            that.dps[[${sensor.id}]] = [];
 
-        </form>
+                            that.chart[[${sensor.id}]] = new CanvasJS.Chart("chart-[[${sensor.id}]]", {
+                                title: {
+                                    text: "[[${sensor.sensorType.name}]]"
+                                },
+                                data: [{
+                                    type: "line",
+                                    dataPoints: that.dps[[${sensor.id}]]
+                                }],
+                                axisY: {
+                                    title: "[[${sensor.sensorType.sensorKind.toValueType()}]]",
+                                },
+                                axisX: {
+                                    valueFormatString: "HH:mm:ss",
+                                    title: "Время",
+                                },
+                            });
+                            that.chart[[${sensor.id}]].dps = that.dps[[${sensor.id}]];
+                            that.chart[[${sensor.id}]].sensorId = "[[${sensor.id}]]";
+                            window.charts.push(that.chart[[${sensor.id}]]);
+
+                        });
+                        //]]>
+                    </script>
+                </div>
+                <!--<div class="form-group">-->
+                    <!--<label class="col-sm-2 control-label">Image Url:</label>-->
+                    <!--<div class="col-sm-10">-->
+                        <!--<p class="form-control-static" th:text="${station.imageUrl}">url....</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+            </form>
+        </div>
     </div>
-</div>
 
 </body>
 </html>

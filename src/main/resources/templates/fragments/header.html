@@ -1,37 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head lang="en">
-
 </head>
 <body>
-<!--<div class="container">
-    <div th:fragment="header">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#" th:href="@{/}">На главную</a>
-                    <ul class="nav navbar-nav">
-                        <li><a href="#" th:href="@{/stations}">Устройства</a></li>
-                    </ul>
-
-                </div>
-            </div>
-        </nav>
-
-        <div class="jumbotron">
+    <div class = "container">
+        <div th:fragment = "header">
             <div class="row text-center">
-                <div class="">
-                    <h2>Ecomon</h2>
-
-                    <h3>Система экологического мониторинга</h3>
+                <img th:src="@{/images/logo1_2.png}"/>
+                <h1>Ecomon</h1>
+                <h3>Penza</h3>
+                <div class = "container menu">
+                    <p>
+                        <span><a href="map.html" th:href="@{map.html}">Карта </a></span>
+                        <span><a th:href="@{stations.html}">Посты </a></span>
+                        <span><a href="contacts.html">Контакты</a></span>
+                    </p>
                 </div>
-            </div>
-            <div class="row text-center">
-                <img src="../../static/images/jumbotron.jpg" width="100%"
-                     th:src="@{/images/jumbotron.jpg}"/>
             </div>
         </div>
     </div>
-</div>-->
 </body>
 </html>

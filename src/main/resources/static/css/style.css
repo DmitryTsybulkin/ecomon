@@ -6,7 +6,7 @@ h2 {
     color: limegreen;
     font-family: 'Lora', serif;
 }
-.container-fluid {
+.menu {
     border: 2px dashed mediumseagreen;
     background: whitesmoke;
     font-size: 20px;
@@ -36,8 +36,11 @@ table {
     font-size: 20px;
     font-family: 'Lora', serif;
 }
-.logo_c {
+.logo_station {
+    width: 100px;
+    height: 100px;
     float: left;
+    text-align: center;
 }
 ul {
     padding: 0 0 0 10px;

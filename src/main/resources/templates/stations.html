@@ -7,25 +7,25 @@
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-<div class="container">
-    <div th:if="${not #lists.isEmpty(stations)}">
 
-        <h2>Список устройств</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>Ид</th>
-                <th>Именование</th>
-                <th></th>
-            </tr>
-            <tr th:each="station : ${stations}">
-                <td th:text="${station.id}"><a href="/station/${station.id}">Id</a></td>
-                <td th:text="${station.name}">Product Id</td>
-                <td><a th:href="${ '/station/' + station.id}">Подробнее...</a></td>
-            </tr>
-        </table>
-
+    <div class="container">
+        <div th:if="${not #lists.isEmpty(stations)}">
+            <img class = "logo_station" th:src="@{/images/logo1_2.png}"/>
+            <h2>Список устройств</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>Ид</th>
+                    <th>Именование</th>
+                    <th></th>
+                </tr>
+                <tr th:each="station : ${stations}">
+                    <td th:text="${station.id}"><a href="/station/${station.id}">Id</a></td>
+                    <td th:text="${station.name}">Product Id</td>
+                    <td><a th:href="${ '/station/' + station.id}">Подробнее...</a></td>
+                </tr>
+            </table>
+        </div>
     </div>
-</div>
 
 </body>
 </html>
