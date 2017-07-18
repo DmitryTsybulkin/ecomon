@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head lang="en">
+    <title>Spring Framework Guru</title>
     <style type="text/css">
         html { height: 100% }
         body { height: 100%; margin: 0px; padding: 0px }
         #map { height: 100% }
     </style>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
 <div id="map"></div>
@@ -14,7 +17,15 @@
     //<![CDATA[
     function initMap() {
         var uluru = {lat: 53.200663, lng: 45.00464};
-        var popupContent = '<div style="height: 300px; width: 300px;"><div>';
+        var name = "[[${station.name}]]";
+        var popupContent =
+            '<div>'+
+            '<img src="../static/images/total_mark.png" th:src="@{/images/total_mark.png}"/>'+
+            '<div class="btn-group center-block">'+
+            '<button type="button" class="btn btn-primary">PM 2,5</button>'+
+            '<button type="button" class="btn btn-primary">Шум</button>'+
+            '<button type="button" class="btn btn-primary">Влажность</button>'+
+            '</div>';
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 4,
             center: uluru,
@@ -30,16 +41,18 @@
             overviewMapControl: true,
             rotateControl: true,
         });
-        var image = "/images/marker.png"
         var marker = new google.maps.Marker({
             position: uluru,
             label: "[[${station.name}]]",
             map: map,
             animation: google.maps.Animation.DROP,
-            icon: image
+            icon: {
+                url: "/images/mark.png",
+                scaledSize: new google.maps.Size(50,50)
+            }
         });
         infowindow = new google.maps.InfoWindow({
-            content: popupContent
+            content: '<h1>'+ name + '</h1>'+ popupContent
         });
         marker.addListener('click', function() {
             infowindow.open(map, marker);
