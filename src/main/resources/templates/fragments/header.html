@@ -3,19 +3,19 @@
 <head lang="en">
 </head>
 <body>
-    <div class = "container">
-        <div th:fragment = "header">
+    <div th:fragment = "header">
+        <div class = "container">
+
             <div class="row text-center">
-                <img th:src="@{/images/logo1_2.png}"/>
-                <h1>Ecomon</h1>
-                <h3>Penza</h3>
-                <div class = "container menu">
-                    <p>
-                        <span><a href="map.html" th:href="@{map.html}">Карта </a></span>
-                        <span><a th:href="@{stations.html}">Посты </a></span>
-                        <span><a href="contacts.html">Контакты</a></span>
-                    </p>
-                </div>
+                    <img class = "logo_index img-responsive center-block" th:src="@{/images/logo_v5.png}"/>
+                    <h1>Penza</h1>
+            <div class = "menu">
+                <p>
+                    <span><a href="map.html" th:href="@{map.html}">Карта </a></span>
+                    <span><a th:href="@{stations.html}">Посты </a></span>
+                    <span><a href="contacts.html">Контакты</a></span>
+                </p>
+            </div>
             </div>
         </div>
     </div>
