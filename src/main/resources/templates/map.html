@@ -1,94 +1,87 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
->
-<head lang="en">
-    <title>Spring Framework Guru</title>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
     <style type="text/css">
         html { height: 100% }
         body { height: 100%; margin: 0px; padding: 0px }
         #map { height: 100% }
     </style>
-    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
-<div id="map"></div>
-<script th:inline="javascript">
-    //<![CDATA[
-    function initMap() {
-        var uluru = {lat: 53.200663, lng: 45.00464};
-        var name = "[[${station.name}]]";
-        var popupContent =
-            '<div>'+
-            '<img src="../static/images/total_mark.png" th:src="@{/images/total_mark.png}"/>'+
-            '<div class="btn-group center-block">'+
-            '<button type="button" class="btn btn-primary">PM 2,5</button>'+
-            '<button type="button" class="btn btn-primary">Шум</button>'+
-            '<button type="button" class="btn btn-primary">Влажность</button>'+
-            '</div>';
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 4,
-            center: uluru,
-            zoom: 12,
-            mapTypeId: google.maps.MapTypeId.HYBRID,
-            scrollwheel: true,
-            draggable: false,
-            panControl: true,
-            zoomControl: true,
-            mapTypeControl: true,
-            scaleControl: true,
-            streetViewControl: true,
-            overviewMapControl: true,
-            rotateControl: true,
-        });
-        var marker = new google.maps.Marker({
-            position: uluru,
-            label: "[[${station.name}]]",
-            map: map,
-            animation: google.maps.Animation.DROP,
-            icon: {
-                url: "/images/mark.png",
-                scaledSize: new google.maps.Size(50,50)
-            }
-        });
-        infowindow = new google.maps.InfoWindow({
-            content: '<h1>'+ name + '</h1>'+ popupContent
-        });
-        marker.addListener('click', function() {
-            infowindow.open(map, marker);
-        });
-        google.maps.event.trigger(map, "resize")
-    }
-    //]]>
-</script>
 
-<script
-        defer="defer" async="async"
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMmvXQD63vFqBa4oARrGCe6lH2xPqdjvA&amp;callback=initMap">
-</script>
-<!--<div id="map"></div>
+    <div id="map"></div>
 
-<script>
-    var map = new GMaps
-    ({
-        el: '#map',
-        lat: 53.215518, //широта
-        lng: 45.006083 // долгота
-    });
-</script>
+    <script th:inline="javascript">
+        //<![CDATA[
+        function initMap() {
+            var uluru = {lat: 53.200663, lng: 45.00464};
+            var name = "[[${station.name}]]";
+            var popupContent =
+                '<div class="container" style="width: 600px; height: 600px;">' +
+                    '<div class = "row">' +
 
-<script>
-    map.addMarker({
-        lat: 53.215518,
-        lng: 45.006083,
-        title: 'sads',
-        click: function(e) {
-            alert('You clicked in this marker');
-        },
-        infoWindow: {
-            content: '<p> Parshin Business incubator</p>'
+                        '<div class = "col-sm-6 pull-left" style="border: 2px solid #80b7e1; background: white;">' +
+                            '<p class = "comment col-sm-12 text-center" style="border-bottom: 2px solid #80b7e1;">' +
+                                'Все показатели в норме. Воздух находится в отличном состоянии' +
+                            '</p>' +
+                            '<div col-sm-12>' +
+                                '<p class = "avg text-center">' +
+                                    'Средняя оценка:' +
+                                '</p>' +
+                                '<img src="/images/total_mark.png" style="width: 50px; height: 50px;" class = "center-block">' +
+                            '</div>' +
+                        '</div>' +
+
+                        '<div class="col-sm-6 btn-group-vertical">' +
+                            '<button type="button" class="btn btn-primary">PM</button>' +
+                            '<button type="button" class="btn btn-primary">NO</button>' +
+                            '<button type="button" class="btn btn-primary">°C</button>' +
+                            '<button type="button" class="btn btn-primary">%</button>' +
+                            '<button id = "run" type="button" class="btn btn-primary">ДБ</button>' +
+                        '</div>' +
+
+                    '</div>' +
+                '</div>';
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 4,
+                center: uluru,
+                zoom: 12,
+                mapTypeId: google.maps.MapTypeId.HYBRID,
+                scrollwheel: true,
+                draggable: false,
+                panControl: true,
+                zoomControl: true,
+                mapTypeControl: true,
+                scaleControl: true,
+                streetViewControl: true,
+                overviewMapControl: true,
+                rotateControl: true,
+            });
+            var marker = new google.maps.Marker({
+                position: uluru,
+                label: "[[${station.name}]]",
+                map: map,
+                animation: google.maps.Animation.DROP,
+                icon: {
+                    url: "/images/mark.png",
+                    scaledSize: new google.maps.Size(50, 50)
+                }
+            });
+            infowindow = new google.maps.InfoWindow({
+                content: '<h1 class = "text-center">' + 'Адрес: ' + name + '</h1>' + popupContent
+            });
+
+            marker.addListener('click', function () {
+                infowindow.open(map, marker);
+            });
         }
-    });
-</script>-->
+    </script>
+
+    <script
+            defer="defer" async="async"
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMmvXQD63vFqBa4oARrGCe6lH2xPqdjvA&amp;callback=initMap">
+    </script>
+
 </body>
 </html>
