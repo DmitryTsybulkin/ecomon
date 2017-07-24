@@ -1,16 +1,14 @@
 package com.itlab2017.controllers;
 
+import com.itlab2017.business.GraphMessageResponse;
 import com.itlab2017.domain.*;
-import com.itlab2017.repositories.SensorRepository;
 import com.itlab2017.repositories.StationRepository;
 import com.itlab2017.services.LogService;
 import com.itlab2017.services.SensorService;
 import com.itlab2017.services.StationService;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
 import java.util.ArrayList;
@@ -28,12 +26,10 @@ public class WebApiController {
     private LogService logService;
     @Autowired
     private StationService stationService;
-    @MessageMapping("/hello")
+    @MessageMapping("/graphdata")
     @SendTo("/topic/greetings")
-    public List<Message> greeting(HelloMessage message) throws Exception {
-
-        List<Message> messages = new ArrayList<Message>();
-
+    public List<GraphMessageResponse> graphdata() throws Exception {
+        List<GraphMessageResponse> graphMessageResponses = new ArrayList<GraphMessageResponse>();
         for(Sensor sensor : sensorService.getSensorsByStationId(1)){
             List<Log> logs = logService.getLogsBySensorId(sensor.getId());
             if(logs.size()<1) continue;
@@ -44,9 +40,9 @@ public class WebApiController {
                 }
             });
             Log log = logs.get(logs.size()-1);
-            messages.add(new Message(log.getValue(), log.getTimestamp(), log.getSensor_id()));
+            graphMessageResponses.add(new GraphMessageResponse(log.getValue(), log.getTimestamp(), log.getSensor_id()));
         };
-        return messages;
+        return graphMessageResponses;
     }
 
 }

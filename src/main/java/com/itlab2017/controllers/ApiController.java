@@ -2,12 +2,15 @@ package com.itlab2017.controllers;
 
 import com.itlab2017.bootstrap.Initializer;
 import com.itlab2017.domain.Log;
+import com.itlab2017.domain.Station;
 import com.itlab2017.services.LogService;
+import com.itlab2017.services.StationService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -15,7 +18,8 @@ public class ApiController {
 
     @Autowired
     private LogService logService;
-
+    @Autowired
+    private StationService stationService;
     private Logger log = Logger.getLogger(Initializer.class);
 
     @RequestMapping("/devices")
@@ -42,4 +46,12 @@ public class ApiController {
         log.info("Обновление успешно");
         return "OK";
     }
+
+    @RequestMapping("/stations")
+    @GetMapping
+    public Iterable<Station> stations(){
+
+        return stationService.listAllStations();
+    }
+
 }

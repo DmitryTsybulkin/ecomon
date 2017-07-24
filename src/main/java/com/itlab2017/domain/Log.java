@@ -1,5 +1,7 @@
 package com.itlab2017.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
@@ -17,6 +19,7 @@ public class Log {
     @Column(name = "sensor_id")
     private Integer sensor_id;
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Sensor.class, cascade = CascadeType.ALL)
+    @JsonBackReference
     @JoinColumn(insertable = false, updatable = false, name="sensor_id", referencedColumnName = "id")
     private Sensor sensor;
 

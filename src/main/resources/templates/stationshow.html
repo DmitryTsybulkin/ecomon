@@ -114,14 +114,14 @@
 
                         that.chart[[${sensor.id}]] = new CanvasJS.Chart("chart-[[${sensor.id}]]", {
                             title: {
-                                text: "[[${sensor.sensorType.name}]]"
+                                text: "[[${sensor.sensor.name}]]"
                             },
                             data: [{
                                 type: "line",
                                 dataPoints: that.dps[[${sensor.id}]]
                             }],
                             axisY: {
-                                title: "[[${sensor.sensorType.sensorKind.toValueType()}]]",
+                                title: "[[${sensor.sensor.sensorKind.toValueType()}]]",
                             },
                             axisX: {
                                 valueFormatString: "HH:mm:ss",

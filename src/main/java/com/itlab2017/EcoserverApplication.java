@@ -20,7 +20,6 @@ public class EcoserverApplication {
 
 	public static void main(String[] args) {
 		System.setProperty("spring.config.name", "application");
-
 		SpringApplication app = new SpringApplication(EcoserverApplication.class);
 		app.setBannerMode(Banner.Mode.OFF);
 		app.run(args);
