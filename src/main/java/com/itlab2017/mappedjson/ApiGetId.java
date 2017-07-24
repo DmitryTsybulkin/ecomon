@@ -1,39 +1,43 @@
-package com.itlab2017.mappedJSON;
+package com.itlab2017.mappedjson;
 
-/**
- * Created by Lenovo on 12.07.2017.
- */
 public class ApiGetId extends ApiRequest {
 
-    String name;
+    private String name;
 
-    String location;
+    private String location;
 
-    String requestHash;
+    private String requestHash;
 
-    SensorKind[] sensorKinds;
+    private SensorKind[] sensorKinds;
 
     public SensorKind[] getSensorKinds() {
         return sensorKinds;
     }
+
     public void setSensorKinds(SensorKind[] sensorKinds) {
         this.sensorKinds = sensorKinds;
     }
-    public void setLocation(String location) {
-        this.location = location;
-    }
+
     public String getLocation() {
         return location;
     }
-    public void setName(String name) {
-        this.name = name;
+
+    public void setLocation(String location) {
+        this.location = location;
     }
+
     public String getName() {
         return name;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getRequestHash() {
         return requestHash;
     }
+
     public void setRequestHash(String requestHash) {
         this.requestHash = requestHash;
     }

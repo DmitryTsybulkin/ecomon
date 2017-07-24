@@ -4,7 +4,7 @@ package com.itlab2017.domain;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
-import java.util.*;
+import java.util.Set;
 
 @Table(name = "station")
 @Entity
@@ -14,33 +14,42 @@ public class Station {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "station", targetEntity = Sensor.class,cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "station", targetEntity = Sensor.class, cascade = CascadeType.ALL)
     @JsonManagedReference
-    private Set<Sensor> sensors ;
+    private Set<Sensor> sensors;
+    @Column
     private String name;
+    @Column
     private String apiKey;
 
     public String getApiKey() {
         return apiKey;
     }
+
     public void setApiKey(String apiKey) {
         this.apiKey = apiKey;
     }
+
     public Integer getId() {
         return id;
     }
+
     public void setId(Integer id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     public Set<Sensor> getSensors() {
         return sensors;
     }
+
     public void setSensors(Set<Sensor> sensors) {
         this.sensors = sensors;
     }

@@ -12,15 +12,12 @@ import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
-/**
- * Created by Lenovo on 13.07.2017.
- */
 @Component
 public class MqttClientFactory {
 
-    String broker = "tcp://m10.cloudmqtt.com:11067";
-    String login = "fhbawzad";
-    String password = "R8smNGTQ-o13";
+    private final String broker = "tcp://m10.cloudmqtt.com:11067";
+    private final String login = "fhbawzad";
+    private final String password = "R8smNGTQ-o13";
     private Logger log = Logger.getLogger(Initializer.class);
     @Autowired
     private MqttCallback mqttCallback;

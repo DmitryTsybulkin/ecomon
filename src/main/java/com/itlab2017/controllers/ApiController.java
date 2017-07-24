@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -24,14 +23,15 @@ public class ApiController {
 
     @RequestMapping("/devices")
     @PostMapping
-    public int devices(@RequestParam(value="name", required=false, defaultValue="World") String name) {
+    public int devices(@RequestParam(value = "name", required = false, defaultValue = "World") String name) {
         return 2;
     }
+
     // TODO: 13.07.2017 убрать костыль для демодня
     @RequestMapping("/update")
     @GetMapping
     public String update(@RequestParam("light") String lightValue,
-                               @RequestParam("noise") String noiseValue){
+                         @RequestParam("noise") String noiseValue) {
         Log lightLog = new Log();
         lightLog.setTimestamp(new Timestamp(System.currentTimeMillis()));
         lightLog.setValue(lightValue);
@@ -49,7 +49,7 @@ public class ApiController {
 
     @RequestMapping("/stations")
     @GetMapping
-    public Iterable<Station> stations(){
+    public Iterable<Station> stations() {
 
         return stationService.listAllStations();
     }

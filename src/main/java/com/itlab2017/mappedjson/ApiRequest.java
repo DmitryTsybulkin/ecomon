@@ -1,14 +1,12 @@
-package com.itlab2017.mappedJSON;
+package com.itlab2017.mappedjson;
 
-/**
- * Created by Lenovo on 12.07.2017.
- */
 public class ApiRequest {
-    String apiKey;
+    private String apiKey;
 
     public String getApiKey() {
         return apiKey;
     }
+
     public void setApiKey(String apiKey) {
         this.apiKey = apiKey;
     }

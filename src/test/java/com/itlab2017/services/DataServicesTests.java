@@ -4,25 +4,20 @@ import com.itlab2017.domain.Log;
 import com.itlab2017.domain.Sensor;
 import com.itlab2017.domain.SensorType;
 import com.itlab2017.domain.Station;
-import com.itlab2017.mappedJSON.SensorKind;
+import com.itlab2017.mappedjson.SensorKind;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Created by Lenovo on 20.07.2017.
- */
 @SpringBootTest
 
 @Transactional

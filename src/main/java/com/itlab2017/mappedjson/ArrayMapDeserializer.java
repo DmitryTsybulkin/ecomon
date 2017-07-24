@@ -1,4 +1,4 @@
-package com.itlab2017.mappedJSON;
+package com.itlab2017.mappedjson;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
@@ -11,9 +11,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Lenovo on 12.07.2017.
- */
 public class ArrayMapDeserializer extends JsonDeserializer<Map<Integer, String>> {
 
     @Override

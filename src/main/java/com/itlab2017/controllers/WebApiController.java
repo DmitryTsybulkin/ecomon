@@ -1,7 +1,8 @@
 package com.itlab2017.controllers;
 
 import com.itlab2017.business.GraphMessageResponse;
-import com.itlab2017.domain.*;
+import com.itlab2017.domain.Log;
+import com.itlab2017.domain.Sensor;
 import com.itlab2017.repositories.StationRepository;
 import com.itlab2017.services.LogService;
 import com.itlab2017.services.SensorService;
@@ -26,20 +27,21 @@ public class WebApiController {
     private LogService logService;
     @Autowired
     private StationService stationService;
+
     @MessageMapping("/graphdata")
     @SendTo("/topic/greetings")
-    public List<GraphMessageResponse> graphdata() throws Exception {
+    public List<GraphMessageResponse> graphdata(Integer stationId) throws Exception {
         List<GraphMessageResponse> graphMessageResponses = new ArrayList<GraphMessageResponse>();
-        for(Sensor sensor : sensorService.getSensorsByStationId(1)){
+        for (Sensor sensor : sensorService.getSensorsByStationId(stationId)) {
             List<Log> logs = logService.getLogsBySensorId(sensor.getId());
-            if(logs.size()<1) continue;
-            Collections.sort(logs,new Comparator<Log>() {
+            if (logs.size() < 1) continue;
+            Collections.sort(logs, new Comparator<Log>() {
                 @Override
                 public int compare(Log o1, Log o2) {
                     return o1.getTimestamp().compareTo(o2.getTimestamp());
                 }
             });
-            Log log = logs.get(logs.size()-1);
+            Log log = logs.get(logs.size() - 1);
             graphMessageResponses.add(new GraphMessageResponse(log.getValue(), log.getTimestamp(), log.getSensor_id()));
         };
         return graphMessageResponses;
