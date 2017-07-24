@@ -3,22 +3,71 @@
 <head lang="en">
 </head>
 <body>
+
     <div th:fragment = "header">
         <div class = "container">
 
+            <div id="panel" class="row" style="padding: 10px;">
+
+                <div class="button_main pull-left text-center col-lg-2">
+                    <p class="button_text button_text_1"><a th:href="@{stations.html}">Посты Ecobox</a></p>
+                </div>
+
+                <div class="button_main pull-right text-center col-lg-1">
+                    <p class="button_text button_text_1">Пенза</p>
+                </div>
+
+                <img id="logo_index" class = "img-responsive center-block" src="/images/logo_v5.svg"/>
+                <script type="text/javascript">
+                    $(document).ready(function(){
+                        $(".but").click(function(){
+                            $('#logo_index').attr("src", "images/Design/Group.png");
+                            $("#logo_index").animate({height: "171", width: "141"},"slow");
+                            $("#logo_index").animate({height: 'S{".button_text"}.height()', width: "S{'.button_text'}.width()"},"slow");
+                            $(this).attr("src", "images/Design/Group.png");
+                        });
+                    });
+                </script>
+
+            </div>
+
             <div class="row text-center">
-                    <img class = "logo_index img-responsive center-block" th:src="@{/images/logo_v5.png}"/>
-                    <h1>Penza</h1>
+                <div class="col-lg-12 line"></div>
+                <div><button class = "but">Жми</button></div>
             </div>
 
-            <div class = "row text-center menu">
-                <p>
-                    <span><a href="map.html" th:href="@{map.html}">Карта </a></span>
-                    <span><a th:href="@{stations.html}">Посты </a></span>
-                    <span><a href="contacts.html">Контакты</a></span>
-                </p>
+            <div class="row we">
+
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-md-offset-2 col-lg-offset-3">
+                    <img class="box_index img-responsive center-block" th:src="@{/images/Design/logo_v3_1.png}"/>
+                </div>
+
+                <div>
+                    <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
+                        <ul class="list_sensors text-center">
+                            <li>
+                                Датчик PM
+                            </li>
+                            <li>
+                                Датчик NO
+                            </li>
+                            <li>
+                                Датчик °C
+                            </li>
+                            <li>
+                                Датчик %
+                            </li>
+                            <li>
+                                Датчик ДБ
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
+            <div class="row footer text-center">
+                <h1><a th:href="@{contacts.html}">Контакты</a></h1>
+            </div>
         </div>
     </div>
 </body>

@@ -9,29 +9,33 @@
 <body>
 
     <div class="container">
+
         <div th:if="${not #lists.isEmpty(stations)}">
 
             <div class="row">
                 <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 pull-left">
-                    <img class = "logo_station center-block" th:src="@{/images/logo_v5_stations.png}"/>
+                    <img class = "logo_station center-block img-responsive" th:src="@{/images/logo_v5_stations.png}"/>
                 </div>
-                <div class="cols-xs-12 col-sm-8 col-md-8 col-lg-8 col-sm-offset-1 col-md-offset-1 text-center">
+                <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-sm-offset-1 col-md-offset-1 text-center">
                     <h2>Список постов экологического мониторинга</h2>
                 </div>
             </div>
 
-            <table id = "ecobox_table" class="table table-hover table-bordered">
-                <tr>
-                    <th>ID</th>
-                    <th>Адрес</th>
-                    <th></th>
-                </tr>
-                <tr th:each="station : ${stations}">
-                    <td th:text="${station.id}"><a href="/station/${station.id}">Id</a></td>
-                    <td th:text="${station.name}">Product Id</td>
-                    <td><a th:href="${ '/station/' + station.id}">Показания...</a></td>
-                </tr>
-            </table>
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <tr>
+                        <th>ID</th>
+                        <th>Наименование</th>
+                        <th></th>
+                    </tr>
+                    <tr th:each="station : ${stations}">
+                        <td th:text="${station.id}"><a href="/station/${station.id}">Id</a></td>
+                        <td th:text="${station.name}">Product Id</td>
+                        <td><a th:href="${ '/station/' + station.id}">Подробнее...</a></td>
+                    </tr>
+                </table>
+            </div>
+
         </div>
     </div>
 
