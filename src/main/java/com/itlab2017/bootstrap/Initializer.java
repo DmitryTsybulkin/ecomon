@@ -1,19 +1,13 @@
 package com.itlab2017.bootstrap;
 
-import com.itlab2017.configuration.MQTTConfiguration;
 import com.itlab2017.domain.Sensor;
 import com.itlab2017.domain.SensorType;
 import com.itlab2017.domain.Station;
 import com.itlab2017.factories.MqttClientFactory;
-import com.itlab2017.handlers.MqttCallbackHandler;
 import com.itlab2017.mappedJSON.SensorKind;
-import com.itlab2017.repositories.StationRepository;
 import com.itlab2017.services.StationService;
 import org.apache.log4j.Logger;
-import org.eclipse.paho.client.mqttv3.MqttClient;
-import org.eclipse.paho.client.mqttv3.MqttException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;

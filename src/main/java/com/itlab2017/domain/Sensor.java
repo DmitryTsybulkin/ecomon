@@ -1,5 +1,8 @@
 package com.itlab2017.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -16,14 +19,17 @@ public class Sensor {
 
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = SensorType.class, cascade = CascadeType.ALL)
     @JoinColumn(name="sensorTypeId", referencedColumnName = "id")
+    @JsonBackReference
     private SensorType sensorType;
     @Column(name = "station_id")
     private Integer station_id;
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = Station.class, cascade = CascadeType.ALL)
+    @JsonBackReference
     @JoinColumn(insertable = false, updatable = false, name="station_id", referencedColumnName = "id")
     private Station station;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sensor", targetEntity = Log.class,cascade = CascadeType.ALL)
-    private Set<Log> logs;
+    @JsonManagedReference
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sensor", targetEntity = Log.class, cascade = CascadeType.ALL)
+    protected Set<Log> logs;
 
     public void setLogs(Set<Log> logs) {
         this.logs = logs;

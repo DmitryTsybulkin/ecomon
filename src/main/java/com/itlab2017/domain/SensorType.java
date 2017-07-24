@@ -1,5 +1,6 @@
 package com.itlab2017.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.itlab2017.mappedJSON.SensorKind;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ public class SensorType {
     private SensorKind sensorKind;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "sensorType", targetEntity = Sensor.class,cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<Sensor> sensors ;
     public Integer getId() {
         return id;

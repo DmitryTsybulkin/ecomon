@@ -1,9 +1,9 @@
 package com.itlab2017.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
-import java.math.BigDecimal;
-import java.sql.Time;
 import java.util.*;
 
 @Table(name = "station")
@@ -15,6 +15,7 @@ public class Station {
     private Integer id;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "station", targetEntity = Sensor.class,cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<Sensor> sensors ;
     private String name;
     private String apiKey;
