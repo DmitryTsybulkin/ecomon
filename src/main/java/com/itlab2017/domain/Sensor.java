@@ -15,7 +15,6 @@ public class Sensor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
     private String name;
     @ManyToOne(fetch = FetchType.LAZY, targetEntity = SensorType.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "sensorTypeId", referencedColumnName = "id")

@@ -12,4 +12,12 @@ public enum SensorKind {
         this.name = name;
         this.valueName = valueName;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getValueName() {
+        return name;
+    }
 }

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      >
+>
 <head lang="en">
     <title>Spring Framework Guru</title>
 
@@ -96,7 +95,7 @@
                         });
                     });
                     setInterval(function(){
-                        that.stompClient.send("/app/hello", {}, JSON.stringify({'name': ''}));
+                        that.stompClient.send("/app/graphdata", {}, "[[${station.id}]]");
                     }, 200);
 
                 });
@@ -113,14 +112,14 @@
 
                         that.chart[[${sensor.id}]] = new CanvasJS.Chart("chart-[[${sensor.id}]]", {
                             title: {
-                                text: "[[${sensor.sensor.name}]]"
+                                text: "[[${sensor.name}]]"
                             },
                             data: [{
                                 type: "line",
                                 dataPoints: that.dps[[${sensor.id}]]
                             }],
                             axisY: {
-                                title: "[[${sensor.sensor.sensorKind.toValueType()}]]",
+                                title: "[[${sensor.getSensorType().getSensorKind().getValueName()}]]",
                             },
                             axisX: {
                                 valueFormatString: "HH:mm:ss",

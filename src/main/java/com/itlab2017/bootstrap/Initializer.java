@@ -30,17 +30,18 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
         stationService.saveStation(station);
         Set<Sensor> sensors = new HashSet<Sensor>();
         SensorType sensorTypeLight = new SensorType();
-        sensorTypeLight.setName("BH1750");
+
         sensorTypeLight.setSensorKind(SensorKind.LIGHT);
         Sensor light = new Sensor();
+        light.setName("BH1750");
         light.setSensorType(sensorTypeLight);
         light.setStation(station);
         light.setStation_id(station.getId());
         sensors.add(light);
         SensorType sensorTypeNoise = new SensorType();
-        sensorTypeNoise.setName("RKP-SS-LM393");
         sensorTypeNoise.setSensorKind(SensorKind.NOISE);
         Sensor noise = new Sensor();
+        noise.setName("RKP-SS-LM393");
         noise.setSensorType(sensorTypeNoise);
         noise.setStation(station);
         noise.setStation_id(station.getId());
