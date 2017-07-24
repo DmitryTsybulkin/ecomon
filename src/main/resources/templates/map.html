@@ -16,7 +16,7 @@
     //<![CDATA[
     function initMap() {
         var uluru = {lat: 53.200663, lng: 45.00464};
-        var name = "[[${station.name}]]";
+       var name = "s";
         var popupContent =
             '<div class="container" style="width: 600px; height: 600px;">' +
             '<div class = "row">' +
@@ -60,7 +60,7 @@
         });
         var marker = new google.maps.Marker({
             position: uluru,
-            label: "[[${station.name}]]",
+            label: name,
             map: map,
             animation: google.maps.Animation.DROP,
             icon: {
@@ -69,7 +69,7 @@
             }
         });
         infowindow = new google.maps.InfoWindow({
-            content: '<h1 class = "text-center">' + 'Адрес: ' + name + '</h1>' + popupContent
+            content: '<h1 class = "text-center">' + 'Адрес: '+ name + '</h1>' + popupContent
         });
 
         marker.addListener('click', function () {
