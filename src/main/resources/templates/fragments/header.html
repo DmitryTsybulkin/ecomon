@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
 <head lang="en">
+    <style>
+        /*html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }*/
+    </style>
 </head>
 <body>
     <div th:fragment = "header">
@@ -9,34 +18,42 @@
             <div id="panel" class="row">
 
                 <div class="button_main pull-left text-center col-lg-1">
-                    <p class="button_text"><a th:href="@{map.html}">Посты Ecobox</a></p>
+                    <p class="button_text"><a th:href="@{stations.html}">Посты Ecobox</a></p>
                 </div>
 
                 <div class="button_main pull-right text-center col-lg-1">
                     <p class="button_text">Пенза</p>
+                    <p class="button_text_1"><a th:href="@{map.html}">Карта</a></p>
                 </div>
 
                 <div>
                     <img id="logo_index" class="img-responsive center-block" src="/images/Design/logo_v1-2.png"/>
                 </div>
 
-                <div class="col-xs-12">
-                    <button class = "but center-block">Жми</button>
-                </div>
+                <div class="col-xs-12 scroll-down"></div>
 
                 <script type="text/javascript">
                     function scroll() {
                         $("#logo_index").attr("src","/images/Design/Group.png");
                         $(this).attr("src", "/images/Design/Group.png");
+                        $(".foot").show()
                     }
+                    $(".scroll-down").mousemove(function () {
+                        $(".scroll-down").css({"border": "2px solid black"});
+                        $(".scroll-down:before").css({"border": "2px solid black"});
+                    });
+                    $(".scroll-down").mouseout(function () {
+                        $(".scroll-down").css({"border": "2px solid white"});
+                        $(".scroll-down:before").css({"border": "2px solid white"});
+                    });
                     $(document).ready(function(){
                         $("#after_scroll").hide();
-                        $(".but").click(function(){
-                            $("#panel").css({"min-height": "10vh"});
+                        $(".foot").hide();
+                        $(".scroll-down").click(function(){
+                            $("#panel").css({"min-height": "47px"});
                             $("#after_scroll").show();
-                            $(".but").hide();
+                            $(".scroll-down").hide();
                             $("#logo_index").animate({height: "57", width: "47"}, 500);
-                            /*$("#logo_index").animate({height: 'S{".button_text"}.height()', width: "S{'.button_text'}.width()"}, 500);*/
                             setTimeout(scroll,500);
                         });
                     });
@@ -70,10 +87,12 @@
                     </ul>
                 </div>
 
-                <div class="col-xs-12 footer text-center center-block">
+            </div>
+
+            <div class="row foot">
+                <div class="col-xs-12 footer text-center">
                     <h1><a th:href="@{contacts.html}">Контакты</a></h1>
                 </div>
-
             </div>
 
         </div>
