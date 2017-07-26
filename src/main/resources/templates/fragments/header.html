@@ -2,13 +2,17 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head lang="en">
     <style>
-        /*html, body {
+        html {
+            position: relative;
             width: 100%;
             height: 100%;
             margin: 0;
             padding: 0;
             overflow: hidden;
-        }*/
+        }
+        body {
+            margin-bottom: 60px;
+        }
     </style>
 </head>
 <body>
@@ -32,68 +36,47 @@
 
                 <div class="col-xs-12 scroll-down"></div>
 
-                <script type="text/javascript">
-                    function scroll() {
-                        $("#logo_index").attr("src","/images/Design/Group.png");
-                        $(this).attr("src", "/images/Design/Group.png");
-                        $(".foot").show()
-                    }
-                    $(".scroll-down").mousemove(function () {
-                        $(".scroll-down").css({"border": "2px solid black"});
-                        $(".scroll-down:before").css({"border": "2px solid black"});
-                    });
-                    $(".scroll-down").mouseout(function () {
-                        $(".scroll-down").css({"border": "2px solid white"});
-                        $(".scroll-down:before").css({"border": "2px solid white"});
-                    });
-                    $(document).ready(function(){
-                        $("#after_scroll").hide();
-                        $(".foot").hide();
-                        $(".scroll-down").click(function(){
-                            $("#panel").css({"min-height": "47px"});
-                            $("#after_scroll").show();
-                            $(".scroll-down").hide();
-                            $("#logo_index").animate({height: "57", width: "47"}, 500);
-                            setTimeout(scroll,500);
-                        });
-                    });
-                </script>
-
             </div>
 
             <div id="after_scroll" class="row">
 
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-md-offset-2 col-lg-offset-3">
-                    <img class="box_index img-responsive center-block" th:src="@{/images/Design/logo_v3_1.png}"/>
-                </div>
+                <p class="description">
+                    <span class="EcoBox">EcoBox </span>- система экологического мониторинга
+                </p>
 
-                <div class="col-xs-12 col-sm-4 col-md-3 col-lg-2">
-                    <ul class="list_sensors text-center">
-                        <li>
-                            Датчик PM
-                        </li>
-                        <li>
-                            Датчик NO
-                        </li>
-                        <li>
-                            Датчик °C
-                        </li>
-                        <li>
-                            Датчик %
-                        </li>
-                        <li>
-                            Датчик ДБ
-                        </li>
-                    </ul>
+                <div class="description_ecobox">
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-lg-offset-2">
+                        <img class="box_index img-responsive center-block" th:src="@{/images/Design/logo_v3_1.png}"/>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
+                        <ul class="list_sensors text-center center-block">
+                            <li>
+                                Датчик твердых частиц <span class="sensor_name">PM<sub>2,5</sub></span>
+                            </li>
+                            <li>
+                                Датчик <span class="sensor_name">NO<sub>2</sub></span>
+                            </li>
+                            <li>
+                                Датчик <span class="sensor_name">°C</span>
+                            </li>
+                            <li>
+                                Датчик влажности <span class="sensor_name">%</span>
+                            </li>
+                            <li>
+                                Датчик шума <span class="sensor_name">ДБ</span>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
 
             </div>
 
-            <div class="row foot">
-                <div class="col-xs-12 footer text-center">
-                    <h1><a th:href="@{contacts.html}">Контакты</a></h1>
-                </div>
-            </div>
+            <footer class="foot navbar-fixed-bottom row-fluid">
+                <h1><a th:href="@{contacts.html}">Контакты</a></h1>
+            </footer>
 
         </div>
     </div>

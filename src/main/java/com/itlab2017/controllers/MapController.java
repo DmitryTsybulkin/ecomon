@@ -14,9 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MapController {
 
+    @Autowired
+    private StationService stationService;
+
+
     @RequestMapping(value = "/map", method = RequestMethod.GET)
-    public String list(Model model){
+    public String list(Model model) {
+        model.addAttribute("stations", stationService.listAllStations());
         return "map";
     }
-
 }
