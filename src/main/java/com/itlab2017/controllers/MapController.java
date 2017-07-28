@@ -19,5 +19,4 @@ public class MapController {
         model.addAttribute("stations", stationService.listAllStations());
         return "map";
     }
-
 }
