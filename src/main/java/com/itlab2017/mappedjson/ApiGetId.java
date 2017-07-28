@@ -20,6 +20,7 @@ public class ApiGetId extends ApiRequest {
     }
 
     public String getLocation() {
+
         return location;
     }
 
