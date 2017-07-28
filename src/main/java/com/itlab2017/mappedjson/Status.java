@@ -1,12 +1,18 @@
 package com.itlab2017.mappedjson;
 
+/**
+ * Created by Lenovo on 12.07.2017.
+ */
 public enum Status {
-    ERROR("error"),
-    OK("ok");
+    ERROR {
+        public String toString() {
+            return "error";
+        }
+    },
 
-    private String displayText;
-
-    Status(String displayText) {
-        this.displayText = displayText;
+    OK {
+        public String toString() {
+            return "ok";
+        }
     }
 }

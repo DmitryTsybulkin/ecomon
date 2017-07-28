@@ -1,4 +1,4 @@
-package com.itlab2017.mappedJSON;
+package com.itlab2017.mappedjson;
 
 /**
  * Created by Lenovo on 12.07.2017.

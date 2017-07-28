@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://fonts.googleapis.com/css?family=Lora&amp;subset=cyrillic" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"
+          media="screen"/>
+    <link th:href="@{/css/style.css}"/>
     <title>Ecomon</title>
 
-    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
 </head>
 <body>
-<div class="container">
-    <div th:if="${not #lists.isEmpty(stations)}">
 
+<div class="container">
+    <img th:src="@{/images/marker.png}"/>
+    <h1 class="tab_h" style="float: right; padding-left: 5px">Список постов экологического мониторинга</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>Адрес</th>
+            <th>Показания</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>ул. Мира 58</td>
+            <td th:text="${station.id}"><a href="/station/${station.id}">Перейти...</a></td>
+        </tr>
+        <!--<tr th:each="device : ${stations}">
+           <td th:text="${station.id}"><a href="/station/${station.id}">Id</a></td>
+           <td th:text="${station.name}">Product Id</td>
+           <td><a th:href="@{stationshow.html}">Подробнее...</a></td>
+       </tr>-->
+    </table>
+    <!--<div th:if="${not #lists.isEmpty(stations)}">
         <h2>Список устройств</h2>
         <table class="table table-striped">
             <tr>
@@ -23,8 +46,7 @@
                 <td><a th:href="${ '/station/' + station.id}">Подробнее...</a></td>
             </tr>
         </table>
-
-    </div>
+    </div>-->
 </div>
 
 </body>

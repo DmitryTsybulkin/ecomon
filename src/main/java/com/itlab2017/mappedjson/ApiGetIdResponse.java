@@ -1,9 +1,12 @@
 package com.itlab2017.mappedjson;
 
+/**
+ * Created by Lenovo on 12.07.2017.
+ */
 public class ApiGetIdResponse extends ApiResponse {
 
-    private Integer id;
-    private Integer[] sensorIds;
+    Integer id;
+    Integer[] sensorIds;
 
     public ApiGetIdResponse(Status status, Integer id, Integer[] sensorIds) {
         super(status);

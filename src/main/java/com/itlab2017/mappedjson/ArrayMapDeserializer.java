@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Created by Lenovo on 12.07.2017.
+ */
 public class ArrayMapDeserializer extends JsonDeserializer<Map<Integer, String>> {
 
     @Override
