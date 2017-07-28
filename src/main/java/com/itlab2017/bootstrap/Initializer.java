@@ -4,7 +4,7 @@ import com.itlab2017.domain.Sensor;
 import com.itlab2017.domain.SensorType;
 import com.itlab2017.domain.Station;
 import com.itlab2017.factories.MqttClientFactory;
-import com.itlab2017.mappedJSON.SensorKind;
+import com.itlab2017.mappedjson.SensorKind;
 import com.itlab2017.services.StationService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

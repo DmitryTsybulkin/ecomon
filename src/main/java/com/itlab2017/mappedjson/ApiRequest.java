@@ -1,4 +1,4 @@
-package com.itlab2017.mappedJSON;
+package com.itlab2017.mappedjson;
 
 public class ApiRequest {
     String apiKey;

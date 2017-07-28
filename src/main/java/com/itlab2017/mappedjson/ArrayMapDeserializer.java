@@ -1,4 +1,4 @@
-package com.itlab2017.mappedJSON;
+package com.itlab2017.mappedjson;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
