@@ -9,13 +9,14 @@ public class ApiGetId extends ApiRequest {
 
     String requestHash;
 
-    SensorType[] sensorTypes;
+    SensorKind[] sensorKinds;
 
-    public SensorType[] getSensorTypes() {
-        return sensorTypes;
+    public SensorKind[] getSensorKinds() {
+        return sensorKinds;
     }
-    public void setSensorTypes(SensorType[] sensorTypes) {
-        this.sensorTypes = sensorTypes;
+
+    public void setSensorKinds(SensorKind[] sensorKinds) {
+        this.sensorKinds = sensorKinds;
     }
 
     public String getLocation() {
