@@ -1,8 +1,9 @@
 /*Общие*/
-h1,h2 {
+h1, h2 {
     color: #81b7e2;
     font-family: 'Lora', serif;
 }
+
 .description {
     font-family: 'Lora', serif;
     text-align: center;
@@ -10,10 +11,12 @@ h1,h2 {
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
 .EcoBox {
     color: #81b7e2;
     font-family: 'Lora', serif;
 }
+
 /* index.html (всё в header.html)
 Главная страница*/
 #panel {
@@ -21,6 +24,7 @@ h1,h2 {
     min-height: 100vh;
     background-color: darkgray;
 }
+
 .button_main {
     background: whitesmoke; /* Цвет фона */
     color: #fff; /* Цвет текста */
@@ -30,10 +34,12 @@ h1,h2 {
     width: 20%;
     height: 20%;
 }
+
 .box_index {
     width: 50%;
     height: 50%;
 }
+
 .button_text {
     font-size: 17px;
     color: #80b7e1;
@@ -41,37 +47,45 @@ h1,h2 {
     font-family: 'Lora', serif;
     font-weight: bold;
 }
+
 .button_text_1 {
     font-size: 15px;
     color: #80b7e1;
     font-family: 'Lora', serif;
     font-weight: bold;
 }
+
 .line {
     background-color: #81b7e2;
     border-radius: 15px;
     height: 5px;
     margin-top: 10px;
 }
+
 .list_sensors {
     color: black;
     font-family: 'Lora', serif;
     font-size: 4vh;
 }
+
 #after_scroll {
     min-height: 100%;
     min-width: 100%;
 }
+
 .description_ecobox {
 }
+
 .sensor_name {
     color: #81b7e2;
 }
+
 .foot {
     border: 2px solid #80b7e1;
     background: whitesmoke;
     text-align: center;
 }
+
 /* stations.html
 Страница со списком станций*/
 .table {
@@ -82,18 +96,21 @@ h1,h2 {
     font-family: 'Lora', serif;
     padding-top: 20px;
 }
+
 /* PopUp для показаний станции
     */
 .comment {
     font-family: 'Lora', serif;
     font-size: 20px;
 }
+
 .avg {
     font-family: 'Lora', serif;
     font-weight: bold;
     font-size: 25px;
 }
-#map{
+
+#map {
     width: 100%;
     height: 100%;
 }

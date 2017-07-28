@@ -10,75 +10,76 @@
             padding: 0;
             overflow: hidden;
         }
+
         body {
             margin-bottom: 60px;
         }
     </style>
 </head>
 <body>
-    <div th:fragment = "header">
-        <div class = "container-fluid main">
+<div th:fragment="header">
+    <div class="container-fluid main">
 
-            <div id="panel" class="row">
+        <div id="panel" class="row">
 
-                <div class="button_main pull-left text-center col-lg-1">
-                    <p class="button_text"><a th:href="@{stations.html}">Посты Ecobox</a></p>
-                </div>
-
-                <div class="button_main pull-right text-center col-lg-1">
-                    <p class="button_text">Пенза</p>
-                    <p class="button_text_1"><a th:href="@{map.html}">Карта</a></p>
-                </div>
-
-                <div>
-                    <img id="logo_index" class="img-responsive center-block" src="/images/Design/logo_v1-2.png"/>
-                </div>
-
-                <div class="col-xs-12 scroll-down"></div>
-
+            <div class="button_main pull-left text-center col-lg-1">
+                <p class="button_text"><a th:href="@{stations.html}">Посты Ecobox</a></p>
             </div>
 
-            <div id="after_scroll" class="row">
-
-                <p class="description">
-                    <span class="EcoBox">EcoBox </span>- система экологического мониторинга
-                </p>
-
-                <div class="description_ecobox">
-
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-lg-offset-2">
-                        <img class="box_index img-responsive center-block" th:src="@{/images/Design/logo_v3_1.png}"/>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
-                        <ul class="list_sensors text-center center-block">
-                            <li>
-                                Датчик твердых частиц <span class="sensor_name">PM<sub>2,5</sub></span>
-                            </li>
-                            <li>
-                                Датчик <span class="sensor_name">NO<sub>2</sub></span>
-                            </li>
-                            <li>
-                                Датчик <span class="sensor_name">°C</span>
-                            </li>
-                            <li>
-                                Датчик влажности <span class="sensor_name">%</span>
-                            </li>
-                            <li>
-                                Датчик шума <span class="sensor_name">ДБ</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                </div>
-
+            <div class="button_main pull-right text-center col-lg-1">
+                <p class="button_text">Пенза</p>
+                <p class="button_text_1"><a th:href="@{map.html}">Карта</a></p>
             </div>
 
-            <footer class="foot navbar-fixed-bottom row-fluid">
-                <h1><a th:href="@{contacts.html}">Контакты</a></h1>
-            </footer>
+            <div>
+                <img id="logo_index" class="img-responsive center-block" src="/images/Design/logo_v1-2.png"/>
+            </div>
+
+            <div class="col-xs-12 scroll-down"></div>
 
         </div>
+
+        <div id="after_scroll" class="row">
+
+            <p class="description">
+                <span class="EcoBox">EcoBox </span>- система экологического мониторинга
+            </p>
+
+            <div class="description_ecobox">
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-lg-offset-2">
+                    <img class="box_index img-responsive center-block" th:src="@{/images/Design/logo_v3_1.png}"/>
+                </div>
+
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-5">
+                    <ul class="list_sensors text-center center-block">
+                        <li>
+                            Датчик твердых частиц <span class="sensor_name">PM<sub>2,5</sub></span>
+                        </li>
+                        <li>
+                            Датчик <span class="sensor_name">NO<sub>2</sub></span>
+                        </li>
+                        <li>
+                            Датчик <span class="sensor_name">°C</span>
+                        </li>
+                        <li>
+                            Датчик влажности <span class="sensor_name">%</span>
+                        </li>
+                        <li>
+                            Датчик шума <span class="sensor_name">ДБ</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+        <footer class="foot navbar-fixed-bottom row-fluid">
+            <h1><a th:href="@{contacts.html}">Контакты</a></h1>
+        </footer>
+
+    </div>
     </div>
 </body>
 </html>

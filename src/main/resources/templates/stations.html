@@ -1,52 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head lang="en">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <link href="https://fonts.googleapis.com/css?family=Lora&amp;subset=cyrillic" rel="stylesheet"/>
-    <link href="https://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"
-          media="screen"/>
-    <link th:href="@{/css/style.css}"/>
+
     <title>Ecomon</title>
 
-    <!--/*/ <th:block th:include="fragments/header :: head"></th:block> /*/-->
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 </head>
 <body>
 
 <div class="container">
-    <img th:src="@{/images/marker.png}"/>
-    <h1 class="tab_h" style="float: right; padding-left: 5px">Список постов экологического мониторинга</h1>
-    <table class="table table-striped">
-        <tr>
-            <th>ID</th>
-            <th>Адрес</th>
-            <th>Показания</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>ул. Мира 58</td>
-            <td th:text="${station.id}"><a href="/station/${station.id}">Перейти...</a></td>
-        </tr>
-        <!--<tr th:each="device : ${stations}">
-           <td th:text="${station.id}"><a href="/station/${station.id}">Id</a></td>
-           <td th:text="${station.name}">Product Id</td>
-           <td><a th:href="@{stationshow.html}">Подробнее...</a></td>
-       </tr>-->
-    </table>
-    <!--<div th:if="${not #lists.isEmpty(stations)}">
-        <h2>Список устройств</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>Ид</th>
-                <th>Именование</th>
-                <th></th>
-            </tr>
-            <tr th:each="station : ${stations}">
-                <td th:text="${station.id}"><a href="/station/${station.id}">Id</a></td>
-                <td th:text="${station.name}">Product Id</td>
-                <td><a th:href="${ '/station/' + station.id}">Подробнее...</a></td>
-            </tr>
-        </table>
-    </div>-->
+
+    <div th:if="${not #lists.isEmpty(stations)}">
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 pull-left">
+                <img class="logo_station center-block img-responsive" th:src="@{/images/logo_v5_stations.png}"/>
+            </div>
+            <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-sm-offset-1 col-md-offset-1 text-center">
+                <h2>Список постов экологического мониторинга</h2>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <tr>
+                    <th>ID</th>
+                    <th>Наименование</th>
+                    <th></th>
+                </tr>
+                <tr th:each="station : ${stations}">
+                    <td th:text="${station.id}"><a href="/station/${station.id}">Id</a></td>
+                    <td th:text="${station.name}">Product Id</td>
+                    <td><a th:href="${ '/station/' + station.id}">Подробнее...</a></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
 </div>
 
 </body>
