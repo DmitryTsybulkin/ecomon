@@ -1,8 +1,6 @@
 package com.itlab2017.mappedjson;
 
-/**
- * Created by Lenovo on 12.07.2017.
- */
+
 public class ApiGetId extends ApiRequest {
 
     String name;
@@ -11,14 +9,13 @@ public class ApiGetId extends ApiRequest {
 
     String requestHash;
 
-    SensorKind[] sensorKinds;
+    SensorType[] sensorTypes;
 
-    public SensorKind[] getSensorKinds() {
-        return sensorKinds;
+    public SensorType[] getSensorTypes() {
+        return sensorTypes;
     }
-
-    public void setSensorKinds(SensorKind[] sensorKinds) {
-        this.sensorKinds = sensorKinds;
+    public void setSensorTypes(SensorType[] sensorTypes) {
+        this.sensorTypes = sensorTypes;
     }
 
     public String getLocation() {

@@ -4,9 +4,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
 import java.util.Map;
 
-/**
- * Created by Lenovo on 12.07.2017.
- */
 public class ApiUpdate extends ApiRequest {
 
     Integer id;
