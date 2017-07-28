@@ -1,4 +1,4 @@
-package com.itlab2017.mappedjson;
+package com.itlab2017.mappedJSON;
 
 public enum Status {
     ERROR {

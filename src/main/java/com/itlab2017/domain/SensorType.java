@@ -1,7 +1,7 @@
 package com.itlab2017.domain;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.itlab2017.mappedjson.SensorKind;
+import com.itlab2017.mappedJSON.SensorKind;
 
 import javax.persistence.*;
 import java.util.Set;

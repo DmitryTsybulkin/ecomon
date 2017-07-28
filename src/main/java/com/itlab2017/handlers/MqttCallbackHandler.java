@@ -6,7 +6,7 @@ import com.itlab2017.domain.Log;
 import com.itlab2017.domain.Sensor;
 import com.itlab2017.domain.Station;
 import com.itlab2017.factories.MqttClientFactory;
-import com.itlab2017.mappedjson.*;
+import com.itlab2017.mappedJSON.*;
 import com.itlab2017.repositories.LogRepository;
 import com.itlab2017.repositories.SensorRepository;
 import com.itlab2017.repositories.StationRepository;

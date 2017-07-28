@@ -1,6 +1,7 @@
-package com.itlab2017.mappedjson;
+package com.itlab2017.mappedJSON;
 
 public enum SensorKind {
+
     TEMPERATURE("Датчик температуры", "Температура"),
     NOISE("Датчик шума", "Интенсивность шума"),
     LIGHT("Датчик света", "Интенсивность света");

@@ -1,8 +1,5 @@
-package com.itlab2017.mappedjson;
+package com.itlab2017.mappedJSON;
 
-/**
- * Created by Lenovo on 12.07.2017.
- */
 public enum SensorType {
     TEMPERATURE {
         public String toString() {
