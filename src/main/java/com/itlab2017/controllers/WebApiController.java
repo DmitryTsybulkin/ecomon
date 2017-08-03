@@ -11,8 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -31,7 +29,11 @@ public class WebApiController {
     private StationService stationService;
 
 
-    private List<GraphMessageResponse> GetGraphDatas(Integer stationId) {
+
+
+    @MessageMapping("/graphdata")
+    @SendTo("/topic/greetings")
+    public List<GraphMessageResponse> graphdata(Integer stationId) throws Exception {
         List<GraphMessageResponse> graphMessageResponses = new ArrayList<GraphMessageResponse>();
         for (Sensor sensor : sensorService.getSensorsByStationId(stationId)) {
             List<Log> logs = logService.getLogsBySensorId(sensor.getId());
@@ -46,18 +48,6 @@ public class WebApiController {
             graphMessageResponses.add(new GraphMessageResponse(log.getValue(), log.getTimestamp(), log.getSensor_id()));
         }
         return graphMessageResponses;
-    }
-
-    @RequestMapping("/graphdata")
-    @GetMapping
-    public List<GraphMessageResponse> graphdataGet(Integer stationId) throws Exception {
-        return GetGraphDatas(stationId);
-    }
-
-    @MessageMapping("/graphdata")
-    @SendTo("/topic/greetings")
-    public List<GraphMessageResponse> graphdata(Integer stationId) throws Exception {
-        return GetGraphDatas(stationId);
     }
 
 }
