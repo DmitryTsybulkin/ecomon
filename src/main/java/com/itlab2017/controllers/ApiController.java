@@ -7,7 +7,10 @@ import com.itlab2017.services.LogService;
 import com.itlab2017.services.StationService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.Timestamp;
 
@@ -21,11 +24,6 @@ public class ApiController {
     private StationService stationService;
     private Logger log = Logger.getLogger(Initializer.class);
 
-    @RequestMapping("/devices")
-    @PostMapping
-    public int devices(@RequestParam(value = "name", required = false, defaultValue = "World") String name) {
-        return 2;
-    }
 
     // TODO: 13.07.2017 убрать костыль для демодня
     @RequestMapping("/update")

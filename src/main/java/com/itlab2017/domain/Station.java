@@ -22,6 +22,21 @@ public class Station {
     @Column
     private String apiKey;
 
+    @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "lat", column = @Column(name = "x")),
+            @AttributeOverride(name = "long", column = @Column(name = "y"))
+    })
+    private Location location;
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     public String getApiKey() {
         return apiKey;
     }
