@@ -2,6 +2,7 @@ package com.itlab2017.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.postgresql.geometric.PGpoint;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -22,18 +23,14 @@ public class Station {
     @Column
     private String apiKey;
 
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "lat", column = @Column(name = "x")),
-            @AttributeOverride(name = "long", column = @Column(name = "y"))
-    })
-    private Location location;
+    @Column
+    private PGpoint location;
 
-    public Location getLocation() {
+    public PGpoint getLocation() {
         return location;
     }
 
-    public void setLocation(Location location) {
+    public void setLocation(PGpoint location) {
         this.location = location;
     }
 

@@ -1,6 +1,5 @@
 package com.itlab2017.bootstrap;
 
-import com.itlab2017.domain.Location;
 import com.itlab2017.domain.Sensor;
 import com.itlab2017.domain.SensorType;
 import com.itlab2017.domain.Station;
@@ -8,6 +7,7 @@ import com.itlab2017.factories.MqttClientFactory;
 import com.itlab2017.mappedjson.SensorKind;
 import com.itlab2017.services.StationService;
 import org.apache.log4j.Logger;
+import org.postgresql.geometric.PGpoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -30,7 +30,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
         Random rand = new Random();
         for (int i = 0; i < 5; i++) {
             Station station = new Station();
-            station.setLocation(new Location(53.200663 + -0.000500 + (0.000500 - -0.000500) * rand.nextDouble(),
+            station.setLocation(new PGpoint(53.200663 + -0.000500 + (0.000500 - -0.000500) * rand.nextDouble(),
                     45.00464 + -0.000500 + (0.000500 - -0.000500) * rand.nextDouble()));
             station.setName("Arduino #" + i);
 
