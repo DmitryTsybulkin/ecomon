@@ -30,8 +30,8 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
         Random rand = new Random();
         for (int i = 0; i < 5; i++) {
             Station station = new Station();
-            station.setLocation(new PGpoint(53.200663 + -0.000500 + (0.000500 - -0.000500) * rand.nextDouble(),
-                    45.00464 + -0.000500 + (0.000500 - -0.000500) * rand.nextDouble()));
+            station.setLocation(new PGpoint(53.200663 + -0.00500 + (0.00500 - -0.00500) * rand.nextDouble(),
+                    45.00464 + -0.00500 + (0.00500 - -0.00500) * rand.nextDouble()));
             station.setName("Arduino #" + i);
 
             stationService.saveStation(station);
