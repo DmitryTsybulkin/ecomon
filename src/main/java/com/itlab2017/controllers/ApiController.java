@@ -89,7 +89,7 @@ public class ApiController {
 
         Log mq131Log = new Log();
         mq131Log.setTimestamp(new Timestamp(System.currentTimeMillis()));
-        mq131Log.setValue(mq9Value);
+        mq131Log.setValue(mq131Value);
         mq131Log.setSensor_id(6);
 
         log.info("Попытка обновления данных");
