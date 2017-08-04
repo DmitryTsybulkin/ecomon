@@ -5,11 +5,12 @@
     <style type="text/css">
         html { height: 100% }
         body { height: 100%; margin: 0px; padding: 0px }
-        #map { height: 100% }
+        #map { height: 90% }
     </style>
 </head>
 <body>
 
+<th:block th:include="fragments/header :: header"></th:block>
 <div id="map"></div>
 
 <script th:inline="javascript">
@@ -39,17 +40,15 @@
             '<button type="button" class="btn btn-primary">°C</button>' +
             '<button type="button" class="btn btn-primary">%</button>' +
             '<button id = "run" type="button" class="btn btn-primary">ДБ</button>' +
-            '</div>' +
 
-            '</div>' +
             '</div>';
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 4,
             center: uluru,
             zoom: 12,
-            mapTypeId: google.maps.MapTypeId.HYBRID,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
             scrollwheel: true,
-            draggable: false,
+            draggable: true,
             panControl: true,
             zoomControl: true,
             mapTypeControl: true,

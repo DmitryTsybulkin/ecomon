@@ -36,23 +36,61 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 
             stationService.saveStation(station);
             Set<Sensor> sensors = new HashSet<Sensor>();
-            SensorType sensorTypeLight = new SensorType();
 
-            sensorTypeLight.setSensorKind(SensorKind.LIGHT);
-            Sensor light = new Sensor();
-            light.setName("BH1750");
-            light.setSensorType(sensorTypeLight);
-            light.setStation(station);
-            light.setStation_id(station.getId());
-            sensors.add(light);
-            SensorType sensorTypeNoise = new SensorType();
-            sensorTypeNoise.setSensorKind(SensorKind.NOISE);
-            Sensor noise = new Sensor();
-            noise.setName("RKP-SS-LM393");
-            noise.setSensorType(sensorTypeNoise);
-            noise.setStation(station);
-            noise.setStation_id(station.getId());
-            sensors.add(noise);
+            SensorType sensorTypeTemperature = new SensorType();
+            sensorTypeTemperature.setSensorKind(SensorKind.TEMPERATURE);
+            Sensor temperature = new Sensor();
+            temperature.setName("DHT-11");
+            temperature.setSensorType(sensorTypeTemperature);
+            temperature.setStation(station);
+            temperature.setStation_id(station.getId());
+            sensors.add(temperature);
+
+            SensorType sensorTypeHumidity = new SensorType();
+            sensorTypeHumidity.setSensorKind(SensorKind.HUMIDITY);
+            Sensor humidity = new Sensor();
+            humidity.setName("DHT-11");
+            humidity.setSensorType(sensorTypeHumidity);
+            humidity.setStation(station);
+            humidity.setStation_id(station.getId());
+            sensors.add(humidity);
+
+            SensorType sensorTypeDust = new SensorType();
+            sensorTypeDust.setSensorKind(SensorKind.DUST);
+            Sensor dust = new Sensor();
+            dust.setName("PPD-42");
+            dust.setSensorType(sensorTypeDust);
+            dust.setStation(station);
+            dust.setStation_id(station.getId());
+            sensors.add(dust);
+
+            SensorType sensorTypeMQ2 = new SensorType();
+            sensorTypeMQ2.setSensorKind(SensorKind.MQ2);
+            Sensor mq2 = new Sensor();
+            mq2.setName("MQ-2");
+            mq2.setSensorType(sensorTypeMQ2);
+            mq2.setStation(station);
+            mq2.setStation_id(station.getId());
+            sensors.add(mq2);
+
+            SensorType sensorTypeMQ9 = new SensorType();
+            sensorTypeMQ9.setSensorKind(SensorKind.MQ9);
+            Sensor mq9 = new Sensor();
+            mq9.setName("MQ-9");
+            mq9.setSensorType(sensorTypeMQ9);
+            mq9.setStation(station);
+            mq9.setStation_id(station.getId());
+            sensors.add(mq9);
+
+            SensorType sensorTypeMQ131 = new SensorType();
+            sensorTypeMQ131.setSensorKind(SensorKind.MQ131);
+            Sensor mq131 = new Sensor();
+            mq131.setName("MQ-131");
+            mq131.setSensorType(sensorTypeMQ131);
+            mq131.setStation(station);
+            mq131.setStation_id(station.getId());
+            sensors.add(mq131);
+
             station.setSensors(sensors);
             stationService.saveStation(station);
         }

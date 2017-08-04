@@ -3,8 +3,80 @@
 <head lang="en">
     <title>EcoBox - система экологического мониторинга</title>
     <th:block th:include="fragments/headerinc :: head"></th:block>
+    <style>
+        html {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            /*overflow: hidden;*/
+        }
+
+        body {
+            margin-bottom: 60px;
+        }
+    </style>
 </head>
 <body>
-<th:block th:include="fragments/header :: header"></th:block>
+<div class="container-fluid main">
+
+    <div id="panel" class="row">
+
+        <div class="button_main pull-left text-center col-lg-1">
+            <p class="button_text"><a th:href="@{stations.html}">Посты Ecobox</a></p>
+        </div>
+
+        <div class="button_main pull-right text-center col-lg-1">
+            <p class="button_text">Пенза</p>
+            <p class="button_text_1"><a th:href="@{map.html}">Карта</a></p>
+        </div>
+
+        <div>
+            <img id="logo_index" class="img-responsive center-block" src="/images/Design/logo_v1-2.png"/>
+        </div>
+
+        <div class="col-xs-12 scroll-down"></div>
+
+    </div>
+
+    <div id="after_scroll" class="row">
+
+        <p class="description">
+            <span class="EcoBox">EcoBox</span>- система экологического мониторинга
+        </p>
+
+        <div class="description_ecobox">
+
+            <div class="col-xs-12 col-lg-4 col-lg-offset-2">
+                <img class="box_index img-responsive center-block" th:src="@{/images/Design/logo_v3_1.png}"/>
+            </div>
+
+            <div class="col-xs-12 col-lg-5">
+                <ul class="list_sensors text-center center-block">
+                    <li>Датчик пропана <span class="sensor_name">C<sub>3</sub>H<sub>8</sub></span> и метана <span class="sensor_name">CH<sub>4</sub></span></li>
+
+                    <li>Датчик угарного газа <span class="sensor_name">NO<sub>2</sub></span></li>
+
+                    <li>Датчик температуры <span class="sensor_name">°C</span></li>
+
+                    <li>Датчик влажности <span class="sensor_name">%</span></li>
+
+                    <li>Датчик озона <span class="sensor_name">NO<sub>3</sub></span></li>
+
+                    <li>Датчик пыли <span class="sensor_name">NO<sub>3</sub></span></li>
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer class="foot navbar-fixed-bottom row-fluid">
+        <h1><a th:href="@{contacts.html}">Контакты</a></h1>
+    </footer>
+
+</div>
 </body>
 </html>
