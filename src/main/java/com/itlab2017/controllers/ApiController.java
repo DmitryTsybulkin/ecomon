@@ -62,35 +62,36 @@ public class ApiController {
                          @RequestParam("mq2") String mq2Value,
                          @RequestParam("mq9") String mq9Value,
                          @RequestParam("mq131") String mq131Value) {
+
         Log temperatureLog = new Log();
         temperatureLog.setTimestamp(new Timestamp(System.currentTimeMillis()));
         temperatureLog.setValue(temperatureValue);
-        temperatureLog.setSensor_id(1);
+        temperatureLog.setSensor_id(temperatureLog.getId());
 
         Log humidityLog = new Log();
         humidityLog.setTimestamp(new Timestamp(System.currentTimeMillis()));
         humidityLog.setValue(humidityValue);
-        humidityLog.setSensor_id(2);
+        humidityLog.setSensor_id(humidityLog.getId());
 
         Log dustLog = new Log();
         dustLog.setTimestamp(new Timestamp(System.currentTimeMillis()));
         dustLog.setValue(dustValue);
-        dustLog.setSensor_id(3);
+        dustLog.setSensor_id(dustLog.getId());
 
         Log mq2Log = new Log();
         mq2Log.setTimestamp(new Timestamp(System.currentTimeMillis()));
         mq2Log.setValue(mq2Value);
-        mq2Log.setSensor_id(4);
+        mq2Log.setSensor_id(mq2Log.getId());
 
         Log mq9Log = new Log();
         mq9Log.setTimestamp(new Timestamp(System.currentTimeMillis()));
         mq9Log.setValue(mq9Value);
-        mq9Log.setSensor_id(5);
+        mq9Log.setSensor_id(mq9Log.getId());
 
         Log mq131Log = new Log();
         mq131Log.setTimestamp(new Timestamp(System.currentTimeMillis()));
         mq131Log.setValue(mq131Value);
-        mq131Log.setSensor_id(6);
+        mq131Log.setSensor_id(mq131Log.getId());
 
         log.info("Попытка обновления данных");
         logService.saveLog(temperatureLog);
