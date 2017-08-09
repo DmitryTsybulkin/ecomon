@@ -29,6 +29,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
     public void onApplicationEvent(ContextRefreshedEvent event) {
         Random rand = new Random();
         for (int i = 0; i < 5; i++) {
+
             Station station = new Station();
             station.setLocation(new PGpoint(53.200663 + -0.00500 + (0.00500 - -0.00500) * rand.nextDouble(),
                     45.00464 + -0.00500 + (0.00500 - -0.00500) * rand.nextDouble()));
@@ -40,7 +41,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
             SensorType sensorTypeTemperature = new SensorType();
             sensorTypeTemperature.setSensorKind(SensorKind.TEMPERATURE);
             Sensor temperature = new Sensor();
-            temperature.setName("DHT-11");
+            temperature.setName("Датчик температуры");
             temperature.setSensorType(sensorTypeTemperature);
             temperature.setStation(station);
             temperature.setStation_id(station.getId());
@@ -49,7 +50,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
             SensorType sensorTypeHumidity = new SensorType();
             sensorTypeHumidity.setSensorKind(SensorKind.HUMIDITY);
             Sensor humidity = new Sensor();
-            humidity.setName("DHT-11");
+            humidity.setName("Датчик влажности");
             humidity.setSensorType(sensorTypeHumidity);
             humidity.setStation(station);
             humidity.setStation_id(station.getId());
@@ -58,7 +59,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
             SensorType sensorTypeDust = new SensorType();
             sensorTypeDust.setSensorKind(SensorKind.DUST);
             Sensor dust = new Sensor();
-            dust.setName("PPD-42");
+            dust.setName("Датчик пыли");
             dust.setSensorType(sensorTypeDust);
             dust.setStation(station);
             dust.setStation_id(station.getId());
@@ -67,7 +68,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
             SensorType sensorTypeMQ2 = new SensorType();
             sensorTypeMQ2.setSensorKind(SensorKind.MQ2);
             Sensor mq2 = new Sensor();
-            mq2.setName("MQ-2");
+            mq2.setName("Датчик пропана и метана");
             mq2.setSensorType(sensorTypeMQ2);
             mq2.setStation(station);
             mq2.setStation_id(station.getId());
@@ -76,7 +77,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
             SensorType sensorTypeMQ9 = new SensorType();
             sensorTypeMQ9.setSensorKind(SensorKind.MQ9);
             Sensor mq9 = new Sensor();
-            mq9.setName("MQ-9");
+            mq9.setName("Датчик угарного газа");
             mq9.setSensorType(sensorTypeMQ9);
             mq9.setStation(station);
             mq9.setStation_id(station.getId());
@@ -85,7 +86,7 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
             SensorType sensorTypeMQ131 = new SensorType();
             sensorTypeMQ131.setSensorKind(SensorKind.MQ131);
             Sensor mq131 = new Sensor();
-            mq131.setName("MQ-131");
+            mq131.setName("Датчик озона");
             mq131.setSensorType(sensorTypeMQ131);
             mq131.setStation(station);
             mq131.setStation_id(station.getId());
