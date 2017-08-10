@@ -59,9 +59,7 @@ public class ApiController {
     public String update(@RequestParam("temperature") String temperatureValue,
                          @RequestParam("humidity") String humidityValue,
                          @RequestParam("dust") String dustValue,
-                         @RequestParam("mq2") String mq2Value,
-                         @RequestParam("mq9") String mq9Value,
-                         @RequestParam("mq131") String mq131Value) {
+                         @RequestParam("mq2") String mq2Value) {
 
         Log temperatureLog = new Log();
         temperatureLog.setTimestamp(new Timestamp(System.currentTimeMillis()));
@@ -83,23 +81,11 @@ public class ApiController {
         mq2Log.setValue(mq2Value);
         mq2Log.setSensor_id(mq2Log.getId());
 
-        Log mq9Log = new Log();
-        mq9Log.setTimestamp(new Timestamp(System.currentTimeMillis()));
-        mq9Log.setValue(mq9Value);
-        mq9Log.setSensor_id(mq9Log.getId());
-
-        Log mq131Log = new Log();
-        mq131Log.setTimestamp(new Timestamp(System.currentTimeMillis()));
-        mq131Log.setValue(mq131Value);
-        mq131Log.setSensor_id(mq131Log.getId());
-
         log.info("Попытка обновления данных");
         logService.saveLog(temperatureLog);
         logService.saveLog(humidityLog);
         logService.saveLog(dustLog);
         logService.saveLog(mq2Log);
-        logService.saveLog(mq9Log);
-        logService.saveLog(mq131Log);
         log.info("Обновление успешно");
         return "OK";
     }

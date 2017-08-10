@@ -5,9 +5,7 @@ public enum SensorKind {
     TEMPERATURE("°С", "Температура"),
     HUMIDITY("%","Степень влажности"),
     DUST("Концентрация", "Концентрация"),
-    MQ2("Концентрация", "Концентрация"),
-    MQ9("Концентрация", "Концентрация"),
-    MQ131("Концентрация", "Концентрация");
+    MQ2("Концентрация", "Концентрация");
 
     private final String name;
     private final String valueName;

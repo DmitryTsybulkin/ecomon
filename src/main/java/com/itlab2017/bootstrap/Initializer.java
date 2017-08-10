@@ -74,24 +74,6 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
             mq2.setStation_id(station.getId());
             sensors.add(mq2);
 
-            SensorType sensorTypeMQ9 = new SensorType();
-            sensorTypeMQ9.setSensorKind(SensorKind.MQ9);
-            Sensor mq9 = new Sensor();
-            mq9.setName("Датчик угарного газа");
-            mq9.setSensorType(sensorTypeMQ9);
-            mq9.setStation(station);
-            mq9.setStation_id(station.getId());
-            sensors.add(mq9);
-
-            SensorType sensorTypeMQ131 = new SensorType();
-            sensorTypeMQ131.setSensorKind(SensorKind.MQ131);
-            Sensor mq131 = new Sensor();
-            mq131.setName("Датчик озона");
-            mq131.setSensorType(sensorTypeMQ131);
-            mq131.setStation(station);
-            mq131.setStation_id(station.getId());
-            sensors.add(mq131);
-
             station.setSensors(sensors);
             stationService.saveStation(station);
         }

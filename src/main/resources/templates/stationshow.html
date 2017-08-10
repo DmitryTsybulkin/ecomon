@@ -38,7 +38,7 @@
                             zoom: 4,
                             center: uluru,
                             zoom: 9,
-                            mapTypeId: google.maps.MapTypeId.HYBRID,
+                            mapTypeId: google.maps.MapTypeId.ROADMAP,
                             scrollwheel: false,
                             draggable: false,
                             panControl: true,
@@ -83,6 +83,7 @@
                                 chart.render();
                             }
                     };
+
                     var socket = new SockJS('/gs-guide-websocket');
                     that.stompClient = Stomp.over(socket);
                     that.stompClient.connect({}, function (frame) {
@@ -94,45 +95,45 @@
                             });
                         });
                     });
+
                     setInterval(function(){
                         that.stompClient.send("/app/graphdata", {}, "[[${station.id}]]");
-                    }, 200);
+                    }, 1000);
 
                 });
                 //]]>
             </script>
             <div class="form-group" th:each="sensor : ${station.sensors}">
-                <div style="height: 500px;" th:id="'chart-' + ${sensor.id}" >
-                </div>
+                <div style="height: 500px;" th:id="'chart-' + ${sensor.id}" ></div>
                 <script th:inline="javascript">
                     //<![CDATA[
-                    $(function(){
-                        var that = this;
-                        that.dps[[${sensor.id}]] = [];
+                        $(function () {
+                            var that = this;
+                            that.dps[[${sensor.id}]] = [];
 
-                        that.chart[[${sensor.id}]] = new CanvasJS.Chart("chart-[[${sensor.id}]]", {
-                            title: {
-                                text: "[[${sensor.name}]]"
-                            },
-                            data: [{
-                                type: "line",
-                                dataPoints: that.dps[[${sensor.id}]]
-                            }],
-                            axisY: {
-                                title: "[[${sensor.getSensorType().getSensorKind().getValueName()}]]",
-                            },
-                            axisX: {
-                                valueFormatString: "HH:mm:ss",
-                                title: "Время",
-                            },
+                            that.chart[[${sensor.id}]] = new CanvasJS.Chart("chart-[[${sensor.id}]]", {
+                                title: {
+                                    text: "[[${sensor.name}]]",
+                                },
+                                data: [{
+                                    type: "line",
+                                    dataPoints: that.dps[[${sensor.id}]]
+                                }],
+                                axisY: {
+                                    title: "[[${sensor.getSensorType().getSensorKind().getValueName()}]]",
+                                },
+                                axisX: {
+                                    valueFormatString: "HH:mm:ss",
+                                    title: "Время",
+                                },
 
-                        });
-                        that.chart[[${sensor.id}]].dps = that.dps[[${sensor.id}]];
-                        that.chart[[${sensor.id}]].sensorId = "[[${sensor.id}]]";
-                        window.charts.push(that.chart[[${sensor.id}]]);
+                            });
+                            window.charts.push(that.chart[[${sensor.id}]]);
+                            that.chart[[${sensor.id}]].dps = that.dps[[${sensor.id}]];
+                            that.chart[[${sensor.id}]].sensorId = "[[${sensor.id}]]";
 
+                        })
 
-                    });
                     //]]>
                 </script>
             </div>
@@ -146,6 +147,5 @@
         </form>
     </div>
 </div>
-
 </body>
 </html>

@@ -1,31 +1,95 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Contacts</title>
-    <link href="https://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"    rel="stylesheet" media="screen"/>
-    <link href="../static/css/style.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lora&amp;subset=cyrillic" rel="stylesheet">
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+    <style>
+        html {
+            height: 100%;
+            width: 100%;
+        }
+        body {
+            height: 100%;
+            width: 100%;
+        }
+    </style>
 </head>
 <body>
-    <div class = "container">
-        <h1>Контакты</h1>
-            <table class = "tab_c" border = 1>
+<div class="container-fluid">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+</div>
+<div class = "container">
+    <div class= "wrapper">
 
-                <tr>
-                    <td>Адрес</td>
-                </tr>
+        <div class="row">
+            <div id="contacts" class="center-block text-center">
 
-                <tr>
-                    <td>Телефон</td>
-                </tr>
+                <h1 style="margin-bottom: 20px">Пенза</h1>
 
-                <tr>
-                    <td>E-mail</td>
-                </tr>
+                <div style="margin-bottom: 10px">
+                    <img th:src="@{/images/Design/mail.png}" style="width: 32px; height: 32px; color: red;"/>
+                    <span style="margin-left: 10px;">info@codeinside.ru</span>
+                </div>
 
-            </table>
-        <img class = "row text-right logo_c" src="../static/images/logo1_2.png">
+                <div style="margin-bottom: 10px">
+                    <img th:src="@{/images/Design/phone.png}" style="width: 32px; height: 32px;"/>
+                    <span style="margin-left: 10px;">+7 (8412) 63-67-36</span>
+                </div>
+
+                <div style="margin-bottom: 10px">
+                    <img th:src="@{/images/Design/location.png}" style="width: 32px; height: 32px; margin-left: 25px;"/>
+                    <span style="margin-left: 10px;">г. Пенза, ул. Ленина, 6</span>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div id="map" style="width:100%; height:350px"></div>
+            <script th:inline="javascript">
+                //<![CDATA[
+                function initMap() {
+                    var uluru = {lat: 53.200663, lng: 45.00464};
+                    var popupContent = '<p>г. Пенза, ул. Ленина, 6</p>';
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 4,
+                        center: uluru,
+                        zoom: 9,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP,
+                        scrollwheel: false,
+                        draggable: true,
+                        panControl: true,
+                        zoomControl: true,
+                        mapTypeControl: true,
+                        scaleControl: true,
+                        streetViewControl: true,
+                        overviewMapControl: true,
+                        rotateControl: true,
+                    });
+                    var marker = new google.maps.Marker({
+                        position: uluru,
+                        map: map
+                    });
+                    google.maps.event.trigger(map, "resize")
+                    infowindow = new google.maps.InfoWindow({
+                        content: popupContent
+                    });
+
+                    marker.addListener('click', function () {
+                        infowindow.open(map, marker);
+                    });
+
+                }
+                //]]>
+            </script>
+
+            <script defer="defer" async="async"
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMmvXQD63vFqBa4oARrGCe6lH2xPqdjvA&amp;callback=initMap">
+            </script>
+
+        </div>
+
     </div>
+</div>
 </body>
 </html>
