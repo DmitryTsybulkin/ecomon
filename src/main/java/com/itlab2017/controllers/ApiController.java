@@ -64,22 +64,22 @@ public class ApiController {
         Log temperatureLog = new Log();
         temperatureLog.setTimestamp(new Timestamp(System.currentTimeMillis()));
         temperatureLog.setValue(temperatureValue);
-        temperatureLog.setSensor_id(temperatureLog.getId());
+        temperatureLog.setSensor_id(0);
 
         Log humidityLog = new Log();
         humidityLog.setTimestamp(new Timestamp(System.currentTimeMillis()));
         humidityLog.setValue(humidityValue);
-        humidityLog.setSensor_id(humidityLog.getId());
+        humidityLog.setSensor_id(1);
 
         Log dustLog = new Log();
         dustLog.setTimestamp(new Timestamp(System.currentTimeMillis()));
         dustLog.setValue(dustValue);
-        dustLog.setSensor_id(dustLog.getId());
+        dustLog.setSensor_id(2);
 
         Log mq2Log = new Log();
         mq2Log.setTimestamp(new Timestamp(System.currentTimeMillis()));
         mq2Log.setValue(mq2Value);
-        mq2Log.setSensor_id(mq2Log.getId());
+        mq2Log.setSensor_id(3);
 
         log.info("Попытка обновления данных");
         logService.saveLog(temperatureLog);
