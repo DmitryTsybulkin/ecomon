@@ -28,9 +28,6 @@ public class WebApiController {
     @Autowired
     private StationService stationService;
 
-
-
-
     @MessageMapping("/graphdata")
     @SendTo("/topic/greetings")
     public List<GraphMessageResponse> graphdata(Integer stationId) throws Exception {

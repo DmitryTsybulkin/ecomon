@@ -7,9 +7,17 @@ public enum SensorType {
         }
     },
 
-    NOUSE {
+    HUMIDITY {
         public String toString() {
-            return "Датчик шума";
+            return "Датчик влажности";
         }
+    },
+
+    DUST {
+        public String toString() { return "Датчик пыли"; }
+    },
+
+    MQ2 {
+        public String toString() { return "Датчик углекислого газа"; }
     }
 }

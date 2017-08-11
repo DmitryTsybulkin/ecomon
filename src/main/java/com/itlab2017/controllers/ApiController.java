@@ -56,19 +56,36 @@ public class ApiController {
     // TODO: 13.07.2017 убрать костыль для демодня
     @RequestMapping("/update")
     @GetMapping
-    public String update(@RequestParam("light") String lightValue,
-                         @RequestParam("noise") String noiseValue) {
-        Log lightLog = new Log();
-        lightLog.setTimestamp(new Timestamp(System.currentTimeMillis()));
-        lightLog.setValue(lightValue);
-        lightLog.setSensor_id(1);
-        Log noiseLog = new Log();
-        noiseLog.setTimestamp(new Timestamp(System.currentTimeMillis()));
-        noiseLog.setValue(noiseValue);
-        noiseLog.setSensor_id(2);
+    public String update(@RequestParam("temperature") String temperaturetValue,
+                         @RequestParam("humidity") String humidityValue,
+                         @RequestParam("dust") String dustValue,
+                         @RequestParam("mq2") String mq2Value) {
+
+        Log temperatureLog = new Log();
+        temperatureLog.setTimestamp(new Timestamp(System.currentTimeMillis()));
+        temperatureLog.setValue(temperaturetValue);
+        temperatureLog.setSensor_id(1);
+
+        Log humidityLog = new Log();
+        humidityLog.setTimestamp(new Timestamp(System.currentTimeMillis()));
+        humidityLog.setValue(humidityValue);
+        humidityLog.setSensor_id(2);
+
+        Log dustLog = new Log();
+        dustLog.setTimestamp(new Timestamp(System.currentTimeMillis()));
+        dustLog.setValue(dustValue);
+        dustLog.setSensor_id(3);
+
+        Log mq2Log = new Log();
+        mq2Log.setTimestamp(new Timestamp(System.currentTimeMillis()));
+        mq2Log.setValue(mq2Value);
+        mq2Log.setSensor_id(4);
+
         log.info("Попытка обновления данных");
-        logService.saveLog(lightLog);
-        logService.saveLog(noiseLog);
+        logService.saveLog(temperatureLog);
+        logService.saveLog(humidityLog);
+        logService.saveLog(dustLog);
+        logService.saveLog(mq2Log);
         log.info("Обновление успешно");
         return "OK";
     }

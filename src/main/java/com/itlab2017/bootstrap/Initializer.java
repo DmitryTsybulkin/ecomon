@@ -36,23 +36,43 @@ public class Initializer implements ApplicationListener<ContextRefreshedEvent> {
 
             stationService.saveStation(station);
             Set<Sensor> sensors = new HashSet<Sensor>();
-            SensorType sensorTypeLight = new SensorType();
 
-            sensorTypeLight.setSensorKind(SensorKind.LIGHT);
-            Sensor light = new Sensor();
-            light.setName("BH1750");
-            light.setSensorType(sensorTypeLight);
-            light.setStation(station);
-            light.setStation_id(station.getId());
-            sensors.add(light);
-            SensorType sensorTypeNoise = new SensorType();
-            sensorTypeNoise.setSensorKind(SensorKind.NOISE);
-            Sensor noise = new Sensor();
-            noise.setName("RKP-SS-LM393");
-            noise.setSensorType(sensorTypeNoise);
-            noise.setStation(station);
-            noise.setStation_id(station.getId());
-            sensors.add(noise);
+            SensorType sensorTypeTemperature = new SensorType();
+            sensorTypeTemperature.setSensorKind(SensorKind.TEMPERATURE);
+            Sensor temperature = new Sensor();
+            temperature.setName("Датчик температуры");
+            temperature.setSensorType(sensorTypeTemperature);
+            temperature.setStation(station);
+            temperature.setStation_id(station.getId());
+            sensors.add(temperature);
+
+            SensorType sensorTypeHumidity = new SensorType();
+            sensorTypeHumidity.setSensorKind(SensorKind.HUMIDITY);
+            Sensor humidity = new Sensor();
+            humidity.setName("Датчик влажности");
+            humidity.setSensorType(sensorTypeHumidity);
+            humidity.setStation(station);
+            humidity.setStation_id(station.getId());
+            sensors.add(humidity);
+
+            SensorType sensorTypeDust = new SensorType();
+            sensorTypeDust.setSensorKind(SensorKind.DUST);
+            Sensor dust = new Sensor();
+            dust.setName("Датчик пыли");
+            dust.setSensorType(sensorTypeDust);
+            dust.setStation(station);
+            dust.setStation_id(station.getId());
+            sensors.add(dust);
+
+            SensorType sensorTypeMQ2 = new SensorType();
+            sensorTypeMQ2.setSensorKind(SensorKind.MQ2);
+            Sensor mq2 = new Sensor();
+            mq2.setName("Датчик углекислого газа");
+            mq2.setSensorType(sensorTypeMQ2);
+            mq2.setStation(station);
+            mq2.setStation_id(station.getId());
+            sensors.add(mq2);
+
             station.setSensors(sensors);
             stationService.saveStation(station);
         }

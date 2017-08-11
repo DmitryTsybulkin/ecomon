@@ -3,8 +3,9 @@ package com.itlab2017.mappedjson;
 public enum SensorKind {
 
     TEMPERATURE("Датчик температуры", "Температура"),
-    NOISE("Датчик шума", "Интенсивность шума"),
-    LIGHT("Датчик света", "Интенсивность света");
+    HUMIDITY("Датчик влажнсти", "Влажность"),
+    DUST("Датчик пыли", "Степень загрязнённости"),
+    MQ2("Датчик углекислого газа", "Концентрация");
 
     private final String name;
     private final String valueName;
