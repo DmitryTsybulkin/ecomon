@@ -35,7 +35,7 @@
                             zoom: 4,
                             center: uluru,
                             zoom: 9,
-                            mapTypeId: google.maps.MapTypeId.HYBRID,
+                            mapTypeId: google.maps.MapTypeId.ROADMAP,
                             scrollwheel: false,
                             draggable: false,
                             panControl: true,
@@ -48,8 +48,13 @@
                         });
                         var marker = new google.maps.Marker({
                             position: uluru,
-                            label: "[[${station.name}]]",
                             map: map
+                        });
+                        infowindow = new google.maps.InfoWindow({
+                            content: "[[${station.name}]]"
+                        });
+                        marker.addListener('click', function () {
+                            infowindow.open(map, marker);
                         });
                         google.maps.event.trigger(map, "resize")
                     }

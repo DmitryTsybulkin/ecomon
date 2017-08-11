@@ -35,8 +35,6 @@ index.html
     padding: 5px; /* Поля вокруг текста */
     border-radius: 30px; /* Уголки */
     border: 2px solid dodgerblue;
-    width: 15%;
-    height: 15%;
 }
 
 #button_list-stations p {
@@ -48,14 +46,13 @@ index.html
     font-size: 15px;
     background: white; /* Цвет фона */
     color: dodgerblue; /* Цвет текста */
-    padding: 5px;
+    padding-top: 10px;
     border-radius: 30px; /* Уголки */
     border: 2px solid dodgerblue;
 }
 
 #div_map p {
     color: black;
-    border-radius: 30px;
 }
 
 .button_text {
