@@ -4,21 +4,16 @@ function scroll() {
     $(this).attr("src", "/images/Design/Group.png");
     $(".foot").show()
 }
-$(".scroll-down").mousemove(function () {
-    $(".scroll-down").css({"border": "2px solid black"});
-    $(".scroll-down:before").css({"border": "2px solid black"});
-});
-$(".scroll-down").mouseout(function () {
-    $(".scroll-down").css({"border": "2px solid white"});
-    $(".scroll-down:before").css({"border": "2px solid white"});
-});
 $(document).ready(function () {
     $("#after_scroll").hide();
     $(".foot").hide();
-    $(".scroll-down").click(function () {
+    $("#scroll-up").click(function () {
         $("#panel").css({"min-height": "47px"});
+        $("#panel").css({"border-bottom": "2px solid dodgerblue"});
+        $(".clearfix").hide();
+        $(".body_index").css({"margin-bottom": "60px"});
         $("#after_scroll").show();
-        $(".scroll-down").hide();
+        $("#scroll-up").hide();
         $("#logo_index").animate({height: "57", width: "47"}, 500);
         setTimeout(scroll, 500);
     });
