@@ -5,51 +5,53 @@
     <style type="text/css">
         html { height: 100% }
         body { height: 100%; margin: 0px; padding: 0px }
-        #map { height: 100% }
+        #map { height: 90% }
     </style>
 </head>
 <body>
 
-<div id="map"></div>
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div id="map"></div>
 
 <script th:inline="javascript">
     //<![CDATA[
     function initMap() {
         var uluru = {lat: 53.200663, lng: 45.00464};
-        var name = "s";
+        var charts_all = "<div id = 'graph'></div>";
         var popupContent =
-            '<div class="container" style="width: 600px; height: 600px;">' +
-            '<div class = "row">' +
+            '<div th:each="station : ${stations}" class="container" style="width: 600px; height: 600px;">' +
+                '<div class = "row">' +
 
-            '<div class = "col-sm-6 pull-left" style="border: 2px solid #80b7e1; background: white;">' +
-            '<p class = "comment col-sm-12 text-center" style="border-bottom: 2px solid #80b7e1;">' +
-            'Все показатели в норме. Воздух находится в отличном состоянии' +
-            '</p>' +
-            '<div col-sm-12>' +
-            '<p class = "avg text-center">' +
-            'Средняя оценка:' +
-            '</p>' +
-            '<img src="/images/total_mark.png" style="width: 50px; height: 50px;" class = "center-block">' +
-            '</div>' +
-            '</div>' +
+                    '<div class = "col-sm-6 pull-left" style="border: 2px solid #80b7e1; background: white;">' +
+                        '<p class = "comment col-sm-12 text-center" style="border-bottom: 2px solid #80b7e1;">' +
+                            'Все показатели в норме. Воздух находится в отличном состоянии' +
+                        '</p>' +
+                    '<div col-sm-12>' +
+                        '<p class = "avg text-center">' +
+                            'Средняя оценка:' +
+                        '</p>' +
+                        '<img src="/images/total_mark.png" style="width: 50px; height: 50px;" class = "center-block">' +
+                    '</div>' +
+                    '</div>' +
 
-            '<div class="col-sm-6 btn-group-vertical">' +
-            '<button type="button" class="btn btn-primary">PM</button>' +
-            '<button type="button" class="btn btn-primary">NO</button>' +
-            '<button type="button" class="btn btn-primary">°C</button>' +
-            '<button type="button" class="btn btn-primary">%</button>' +
-            '<button id = "run" type="button" class="btn btn-primary">ДБ</button>' +
-            '</div>' +
+                    '<div class="col-sm-6 btn-group-vertical">' +
 
-            '</div>' +
-            '</div>';
+                        '<button type="button" class="btn btn-primary">PM</button>' +
+                        '<button type="button" class="btn btn-primary">NO</button>' +
+                        '<button type="button" class="btn btn-primary">°C</button>' +
+                        '<button type="button" class="btn btn-primary">%</button>' +
+                        '<button id = "run" type="button" class="btn btn-primary">ДБ</button>' +
+
+                    '</div>' +
+                '</div>' +
+        '</div>';
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 4,
             center: uluru,
             zoom: 12,
-            mapTypeId: google.maps.MapTypeId.HYBRID,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
             scrollwheel: true,
-            draggable: false,
+            draggable: true,
             panControl: true,
             zoomControl: true,
             mapTypeControl: true,
@@ -60,7 +62,7 @@
         });
         var marker = new google.maps.Marker({
             position: uluru,
-            label: name,
+            label: "${station.name}",
             map: map,
             animation: google.maps.Animation.DROP,
             icon: {
