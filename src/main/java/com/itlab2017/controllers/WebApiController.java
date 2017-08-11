@@ -28,6 +28,9 @@ public class WebApiController {
     @Autowired
     private StationService stationService;
 
+
+
+
     @MessageMapping("/graphdata")
     @SendTo("/topic/greetings")
     public List<GraphMessageResponse> graphdata(Integer stationId) throws Exception {
@@ -43,7 +46,7 @@ public class WebApiController {
             });
             Log log = logs.get(logs.size() - 1);
             graphMessageResponses.add(new GraphMessageResponse(log.getValue(), log.getTimestamp(), log.getSensor_id()));
-        };
+        }
         return graphMessageResponses;
     }
 
