@@ -161,6 +161,12 @@
 			<artifactId>moquette-broker</artifactId>
 			<version>0.10</version>
 		</dependency>
+
+		<dependency>
+			<groupId>com.heroku.sdk</groupId>
+			<artifactId>heroku-maven-plugin</artifactId>
+			<version>1.2.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -180,6 +186,18 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<plugin>
+				<groupId>com.heroku.sdk</groupId>
+				<artifactId>heroku-maven-plugin</artifactId>
+				<configuration>
+					<appName>ecomon</appName>
+					<processTypes>
+						<web>java $JAVA_OPTS -cp target/classes:target/dependency/* Main</web>
+					</processTypes>
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 </project>

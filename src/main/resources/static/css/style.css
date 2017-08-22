@@ -9,9 +9,16 @@ h1, h2 {
     background: lightgray;
     height: 57px;
 }
+<<<<<<< HEAD
 #header-logo {
     height: 57px;
     width: 47px;
+=======
+
+.EcoBox {
+    color: #81b7e1;
+    font-family: 'Lora', serif;
+>>>>>>> 316b9f740e1134fe27b23c0a73f1cde22a8f008f
 }
 
 /*************************
