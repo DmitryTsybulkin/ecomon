@@ -28,6 +28,6 @@ spring:
         ddl-auto: create-drop
     properties:
       datasource:
-          url: jdbc:postgresql://ec2-107-21-109-15.compute-1.amazonaws.com:5432/dbrs3m1j5asp0t?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
-          username: lfpgcxojkznnnt
-          password: a98c7e0d46e07b9bd7b7e90b4e29b5096825bc2c2539744c7e34264b3cfe50a9
+          url: jdbc:postgres://rruakjnfmekpqq:b86b72630d144ffba52c3f4d852a91590750b8ba2f53925ce960f55397b4f283@ec2-23-21-197-231.compute-1.amazonaws.com:5432/d23djndovdrofk
+          username: rruakjnfmekpqq
+          password: b86b72630d144ffba52c3f4d852a91590750b8ba2f53925ce960f55397b4f283
